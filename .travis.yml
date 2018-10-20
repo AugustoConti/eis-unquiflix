@@ -1,7 +1,27 @@
 language: java
-sudo: false # faster builds
+
+services:
+  - mysql
+
+addons:
+  apt:
+    sources:
+      - mysql-5.7-trusty
+    packages:
+      - mysql-server
+      - mysql-client
+
+sudo: required
+
+before_install:
+  - sudo mysql -e "use mysql; update user set authentication_string=PASSWORD('root') where User='root'; update user set plugin='mysql_native_password';FLUSH PRIVILEGES;"
+  - sudo mysql_upgrade -u root -proot
+  - sudo service mysql restart
+
+before_script:
+  - mysql -uroot -proot -e 'create database unquiflix;'
 
 script: "mvn cobertura:cobertura"
 
 after_success:
-- bash <(curl -s https://codecov.io/bash)
+  - bash <(curl -s https://codecov.io/bash)
