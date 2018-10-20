@@ -19,7 +19,7 @@ before_install:
   - sudo service mysql restart
 
 before_script:
-  - mysql -e 'create database unquiflix;'
+  - mysql -uroot -proot -e 'create database unquiflix;'
 
 script: "mvn cobertura:cobertura"
 
