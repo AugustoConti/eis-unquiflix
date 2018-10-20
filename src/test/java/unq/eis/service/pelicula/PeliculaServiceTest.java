@@ -33,6 +33,7 @@ public class PeliculaServiceTest {
     @Test
     public void buscarPeliculaVolverAlFuturo() {
         Pelicula volverAlFuturo = service.buscar("Volver al Futuro");
+        assertEquals("Volver al Futuro", volverAlFuturo.getTitulo());
         assertTrue(volverAlFuturo.getEstreno().isEqual(LocalDate.of(1985, 7, 3)));
         assertEquals("Robert Zemeckis", volverAlFuturo.getDirectores());
         assertEquals("Michael J. Fox, Christopher Lloyd, Crispin Glover, Lea Thompson", volverAlFuturo.getActores());
