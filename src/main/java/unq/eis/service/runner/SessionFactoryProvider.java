@@ -12,16 +12,12 @@ public class SessionFactoryProvider {
     private SessionFactory sessionFactory;
 
     public static SessionFactoryProvider getInstance() {
-        if (INSTANCE == null) {
-            INSTANCE = new SessionFactoryProvider();
-        }
+        if (INSTANCE == null) INSTANCE = new SessionFactoryProvider();
         return INSTANCE;
     }
 
     public static void destroy() {
-        if (INSTANCE != null && INSTANCE.sessionFactory != null) {
-            INSTANCE.sessionFactory.close();
-        }
+        if (INSTANCE != null && INSTANCE.sessionFactory != null) INSTANCE.sessionFactory.close();
         INSTANCE = null;
     }
 
@@ -30,9 +26,7 @@ public class SessionFactoryProvider {
             Session session = Runner.getCurrentSession();
             List<String> nombreDeTablas = session.createNativeQuery("show tables").getResultList();
             session.createNativeQuery("SET FOREIGN_KEY_CHECKS=0;").executeUpdate();
-            nombreDeTablas.forEach(tabla -> {
-                session.createNativeQuery("truncate table " + tabla).executeUpdate();
-            });
+            nombreDeTablas.forEach(tabla -> session.createNativeQuery("truncate table " + tabla).executeUpdate());
             session.createNativeQuery("SET FOREIGN_KEY_CHECKS=1;").executeUpdate();
             return null;
         });

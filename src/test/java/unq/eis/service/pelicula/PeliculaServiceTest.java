@@ -1,8 +1,8 @@
 package unq.eis.service.pelicula;
 
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
 import unq.eis.model.Pelicula;
 import unq.eis.service.ServiceFactory;
 import unq.eis.service.runner.SessionFactoryProvider;
@@ -10,23 +10,23 @@ import unq.eis.service.test.TestService;
 
 import java.time.LocalDate;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
-class PeliculaServiceTest {
+public class PeliculaServiceTest {
     private static TestService testService = ServiceFactory.getTestService();
     private PeliculaService service = ServiceFactory.getPeliculaService();
 
-    @BeforeAll
-    static void setUp() {
+    @Before
+    public void setUp() {
         testService.save(new Pelicula("Volver al Futuro", LocalDate.of(1985, 7, 3),
                 "Robert Zemeckis",
                 "Michael J. Fox, Christopher Lloyd, Crispin Glover, Lea Thompson",
                 "https://www.youtube.com/watch?v=qvsgGtivCgs"));
     }
 
-    @AfterAll
-    static void cleanup() {
+    @After
+    public void cleanup() {
         SessionFactoryProvider.clear();
     }
 

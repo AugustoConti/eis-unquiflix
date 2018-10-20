@@ -19,18 +19,12 @@ public class Runner {
         try {
             session = SessionFactoryProvider.getInstance().createSession();
             tx = session.beginTransaction();
-
             CONTEXTO.set(session);
-
-            //codigo de negocio
             T resultado = bloque.get();
-
             tx.commit();
             return resultado;
         } catch (RuntimeException e) {
-            if (tx != null && tx.isActive()) {
-                tx.rollback();
-            }
+            if (tx != null && tx.isActive()) tx.rollback();
             throw e;
         } finally {
             if (session != null) {
@@ -42,9 +36,7 @@ public class Runner {
 
     public static Session getCurrentSession() {
         Session session = CONTEXTO.get();
-        if (session == null) {
-            throw new RuntimeException("No hay ninguna session en el contexto");
-        }
+        if (session == null) throw new RuntimeException("No hay ninguna session en el contexto");
         return session;
     }
 }
