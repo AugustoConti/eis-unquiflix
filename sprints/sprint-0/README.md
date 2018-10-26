@@ -11,7 +11,7 @@
 
 ## Gráfico de velocidad para este sprint y los sprints anteriores.
 	
-	* [PENDIENTE]
+	![Velocidad en Sprints](https://drive.google.com/open?id=1fA3jEayIt5O1uDS_DWxZVaBdZ3RBHnuZ)
 
 ## Estado del servidor de Integración Continua.
 	- [x] IC configurado y corriendo TRAVIS + CODECOV
