@@ -11,7 +11,7 @@
 
 ## Gráfico de velocidad para este sprint y los sprints anteriores.
 	
-	![Velocidad en Sprints](https://github.com/AugustoConti/eis-unquiflix/velocidad_sprints.png )
+	![Velocidad en Sprints](velocidad_sprints.png?raw=true "Velocidad en Sprints")
 
 ## Estado del servidor de Integración Continua.
 	- [x] IC configurado y corriendo TRAVIS + CODECOV
