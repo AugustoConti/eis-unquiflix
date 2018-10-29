@@ -5,8 +5,8 @@ import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.web.bind.annotation.*;
 import unq.eis.unquiflix.model.Categoria;
-import unq.eis.unquiflix.repository.PeliculaRepository;
 import unq.eis.unquiflix.model.Pelicula;
+import unq.eis.unquiflix.repository.PeliculaRepository;
 
 import java.time.LocalDate;
 import java.util.Arrays;
