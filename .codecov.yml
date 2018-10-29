@@ -7,5 +7,5 @@ comment:
   paths: null
 
 ignore:
-  - "src/main/java/unq/eis/dao"
-  - "src/main/java/unq/eis/service"
+  - "src/main/java/unq/eis/unquiflix/UnquiflixApplication.java"
+  - "src/main/java/unq/eis/unquiflix/service"

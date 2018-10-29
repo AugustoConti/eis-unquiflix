@@ -1,4 +1,4 @@
-package unq.eis.model;
+package unq.eis.unquiflix.model;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -12,6 +12,9 @@ public class Pelicula {
     @Column(unique = true)
     private String titulo;
 
+    @Enumerated(EnumType.STRING)
+    private Categoria categoria;
+
     private LocalDate estreno;
     private String directores;
     private String actores;
@@ -20,17 +23,24 @@ public class Pelicula {
     protected Pelicula() {
     }
 
-    public Pelicula(String titulo, LocalDate estreno, String directores, String actores, String link) {
+    public Pelicula(String titulo, Categoria categoria, LocalDate estreno, String directores, String actores, String link) {
         this.titulo = titulo;
+        this.categoria = categoria;
         this.estreno = estreno;
         this.directores = directores;
         this.actores = actores;
         this.link = link;
     }
 
+    public Integer getID(){
+        return id;
+    }
+
     public String getTitulo() {
         return titulo;
     }
+
+    public Categoria getCategoria() { return this.categoria; }
 
     public LocalDate getEstreno() {
         return estreno;
