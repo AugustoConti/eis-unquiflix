@@ -1,5 +1,8 @@
 language: java
 
+jdk:
+  - oraclejdk8
+
 services:
   - mysql
 
@@ -14,15 +17,18 @@ addons:
 sudo: required
 
 before_install:
+  - pip install --user codecov
   - sudo mysql -e "use mysql; update user set authentication_string=PASSWORD('root') where User='root'; update user set plugin='mysql_native_password';FLUSH PRIVILEGES;"
   - sudo mysql_upgrade -u root -proot
   - sudo service mysql restart
 
 before_script:
+  - chmod +x gradlew
   - mysql -uroot -proot -e 'create database unquiflix;'
 
-script: 
-  - ./gradlew build
+script:
+  - ./gradlew check
+  - ./gradlew codeCoverageReport
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
