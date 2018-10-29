@@ -5,3 +5,7 @@ comment:
   branches: null
   flags: null
   paths: null
+
+ignore:
+  - "src/main/java/unq/eis/unquiflix/UnquiflixApplication.java"
+  - "src/main/java/unq/eis/unquiflix/service"
