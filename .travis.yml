@@ -21,7 +21,8 @@ before_install:
 before_script:
   - mysql -uroot -proot -e 'create database unquiflix;'
 
-script: "mvn cobertura:cobertura"
+script: 
+  - ./gradlew build
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)

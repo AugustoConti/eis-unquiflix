@@ -5,7 +5,3 @@ comment:
   branches: null
   flags: null
   paths: null
-
-ignore:
-  - "src/main/java/unq/eis/dao"
-  - "src/main/java/unq/eis/service"
