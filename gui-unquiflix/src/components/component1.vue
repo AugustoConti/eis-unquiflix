@@ -31,9 +31,21 @@
       
       <!-- <img width="100" :src="image" :alt="title" />  -->
       <!-- <h2>{{title}}</h2> -->
-      <div class="card-deck" style="margin: 1rem 1rem"></div>
-      <div class="card" v-for="pelicula in peliculaFilter" :key="pelicula.id" >{{ pelicula.nombre }} - {{ pelicula.categoria }}</div>
-      <div class="card-body"> </div>
+      <div class="card-deck" style="margin: 1rem 1rem">TEXTO QUE HACE QUE</div>
+      <div class="card" v-for="pelicula in peliculaFilter" :key="pelicula.id" >
+          {{ pelicula.categoria }}
+          <!--Card image-->
+          <img class="img-fluid" src="../assets/thumb.png" alt="Card image cap">
+
+          <!--Card content-->
+          <div class="card-body">
+              <!--Title-->
+              <h4 class="card-title">{{ pelicula.nombre }}</h4>
+              <!--Text-->
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <a href="#" class="btn btn-primary">Button</a>
+            </div>
+      </div>
       <!-- <ul>
           <li class="card-title" v-for="pelicula in peliculaFilter" :key="pelicula.id">{{ pelicula.nombre }} - {{ pelicula.categoria }}</li>
             
@@ -61,13 +73,13 @@
                 peliculas: [
                 {
                  id: 1,           
-                 nombre: 'pepe1',
+                 nombre: 'Volver Al futuro',
                  categoria: 'terror'
                  
                 },
                 {
                     id: 2,
-                    nombre: 'pepe2',
+                    nombre: 'Esperando la carroza',
                     categoria: 'romantica'
                 }
                 ]
@@ -83,4 +95,5 @@
 
 <style scoped>
 ul li {color: white;}
+.card-deck{background-color:red;}
 </style>
