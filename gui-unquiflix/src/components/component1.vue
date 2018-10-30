@@ -19,41 +19,44 @@
 
 
       
-      <img width="100" :src="image" :alt="title" />
-      <h2>{{title}}</h2>
+      <!-- <img width="100" :src="image" :alt="title" /> -->
+      <!-- <h2>{{title}}</h2> -->
+      <ul>
+          <li  v-for="pelicula in peliculas" :key="pelicula.id">{{ pelicula.nombre }} - {{ pelicula.categoria }}</li>
+            
+      </ul>
     </div>
 
 </template>
 
 <script>
     export default {
-        name: "#component1",
+        name: "component1",
         data() {
-            peliculas: [
+            return {
+                peliculas: [
                 {
+                 id: 1,           
                  nombre: 'pepe1',
                  categoria: 'terror'
                  
                 },
                 {
+                    id: 2,
                     nombre: 'pepe2',
                     categoria: 'romantica'
-                },
-                {
-                    nombre: 'pepe3',
-                    categoria: 'terror'
-                },
-                {
-                    nombre: 'pepe4',
-                    categoria: 'romantica'
-                },
+                }
+                ]
+            }
+            
+                
 
-            ]
+            
         }
     }
 </script>
 
 
 <style scoped>
-
+ul li {color: white;}
 </style>

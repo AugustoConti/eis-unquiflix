@@ -1,22 +1,34 @@
 <template>
-    
+    <div>
+
     <!-- <button disabled="disabled">Ingresar</button> -->
     <router-link class="btn btn-primary" to="/component1">Ingresar</router-link>
+    
+    <!-- <ul>
+        <li v-for="item in items" :key="item" >
+            {{ item.message }} 
+        </li>
+    </ul>    -->
 
+    <!-- <router-view/>  -->
+    </div>
 </template>
 
-
-
-
-
 <script>
-var example1 = new Vue({
-  el: '#example-1',
-  data: {
-    items: [
-      { message: 'Foo' },
-      { message: 'Bar' }
-    ]
-  }
-})
+
+export default {
+    name: 'ingreso',
+    data() {
+        return {
+            items: [
+            { message: 'Foo' },
+            { message: 'Bar' }
+        ]
+        }
+        
+    }
+   
+  
+    
+}
 </script>
