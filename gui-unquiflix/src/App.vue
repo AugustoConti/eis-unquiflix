@@ -1,14 +1,11 @@
 <template>
   <div id="app">
-    <nav id="barra-principal" class="navbar navbar-dark bg-dark sticky-top">
-      <!-- Navbar content -->
+    <!-- <nav id="barra-principal" class="navbar navbar-dark bg-dark sticky-top">
+      
       <ul class="nav">
         <li class="nav-item">
           <router-link to="/">Home</router-link>
         </li>
-        <!--    <li class="nav-item">
-            <router-link to="/about">About</router-link>
-          </li> -->
         </ul>
         <div class="div-select">
           <select class="custom-select" name="" id="">
@@ -18,7 +15,7 @@
           </select>
         </div>
 
-      </nav>
+      </nav> -->
 
       <router-view/>
     </div>
