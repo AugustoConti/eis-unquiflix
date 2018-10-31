@@ -1,21 +1,8 @@
 <template>
   <div id="app">
-    <!-- <nav id="barra-principal" class="navbar navbar-dark bg-dark sticky-top">
-      
-      <ul class="nav">
-        <li class="nav-item">
-          <router-link to="/">Home</router-link>
-        </li>
-        </ul>
-        <div class="div-select">
-          <select class="custom-select" name="" id="">
-            <option value="" disabled selected hidden>Elegir el genero...</option>
-            <option value="">Terror</option>
-            <option value="">Romantica</option>
-          </select>
-        </div>
 
-      </nav> -->
+
+
       <router-view/>
     </div>
   </template>
@@ -28,24 +15,35 @@
       text-align: center;
       color: #2c3e50;
       margin-top: 60px;
-    } */
+    }*/
 
 
     #barra-principal{
-      height: 3rem;
+      height: 5rem;
     }
     .div-select{
       width: 15rem;
     }
     body {
-      /* background-color: black; */
 
-      background: url("../src/assets/unquiflix.jpg") no-repeat center center fixed;
+      background: url("../src/assets/logobackChicoNegro.png") no-repeat center center fixed black !important;
+      background-color:black;
 
-      background-size: cover;
+
 
     }
 
+    .btn-primary{
+      background: rgb(22, 96, 57);
+
+      color: white;
+      margin: 0px 10px 0px 10px;
+      padding: 0 20px;
+      border-radius: 5px;
+      height: 50px;
+      line-height: 50px;
+      text-align: center;
+    }
 
 
   </style>
