@@ -34,8 +34,8 @@
     }
 
     .btn-primary{
-      background: rgb(22, 96, 57);
-
+      background: rgb(22, 96, 57)!important;
+      border-color:rgb(22, 96, 57)!important;
       color: white;
       margin: 0px 10px 0px 10px;
       padding: 0 20px;
@@ -43,6 +43,11 @@
       height: 50px;
       line-height: 50px;
       text-align: center;
+    }
+
+    .container-fluid{
+      padding-left:0!important;
+      padding-right:0!important;
     }
 
 
