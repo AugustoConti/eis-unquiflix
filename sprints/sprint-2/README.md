@@ -10,7 +10,7 @@
 - Ver listado de películas estrenadas recientemente **5** 
 
 ## Gráfico de velocidad
-- Completar
+![sprints](sprint2.png?raw=true "Velocidad en Sprints")
 
 ## Retrospectiva
 
