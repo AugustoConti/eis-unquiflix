@@ -1,8 +1,6 @@
 # Unquiflix
 TP para Elementos de Ingeniería de Software - UNQ 2018
 
-[![codecov](https://codecov.io/gh/AugustoConti/eis-unquiflix/branch/master/graph/badge.svg?branch=master)](https://codecov.io/gh/AugustoConti/eis-unquiflix?branch=master)
-
 ### Integrantes
  Nombre          | Mail
 -----------------|--------
@@ -12,6 +10,9 @@ Martin Kopecek   | kopecek.mk@gmail.com
 Enrique Alonso   | alonso.em@gmail.com
 Augusto Conti    | augustoconti10@gmail.com
 
+[![Build Status](https://travis-ci.org/AugustoConti/eis-unquiflix.svg?branch=master)](https://travis-ci.org/AugustoConti/eis-unquiflix)
+
+[![codecov](https://codecov.io/gh/AugustoConti/eis-unquiflix/branch/master/graph/badge.svg?branch=master)](https://codecov.io/gh/AugustoConti/eis-unquiflix?branch=master)
 
 - [Tablero Backlog](https://trello.com/b/zK35P4Vr/backlog)
 
