@@ -1,12 +1,9 @@
 <template>
     <div class="container-fluid">
         <!-- <input type="search" class="form-control" v-model="peliculasearch" placeholder="Buscar.."> -->
+
         <nav id="barra-principal" class="navbar navbar-dark bg-dark sticky-top">
-            <ul class="nav">
-                <li class="nav-item">
-                    <router-link to="/">UnquiFlix</router-link>
-                </li>
-            </ul>
+            <p id="unqHead-Title">UNQUIFLIX</p>
             <div class="div-select">
                 <select class="custom-select" v-model="peliculasearch" name="" id="">
                     <option value="" disabled selected hidden>Elegir la categoria...</option>
@@ -31,11 +28,18 @@
       
       <!-- <img width="100" :src="image" :alt="title" />  -->
       <!-- <h2>{{title}}</h2> -->
-      <div class="card-deck" style="margin: 1rem 1rem">TEXTO QUE HACE QUE</div>
+      
       <div class="card" v-for="pelicula in peliculaFilter" :key="pelicula.id" >
-          {{ pelicula.categoria }}
+
           <!--Card image-->
-          <img class="img-fluid" :src="pelicula.linkPortada"  :alt="pelicula.titulo">
+        <div class="container">
+            <img class="img-fluid image" :src="pelicula.linkPortada"  :alt="pelicula.titulo">
+            <div class="overlay">
+                <a :href="pelicula.link" class="icon" title="Play">
+                <i class="fa fa-play-circle"></i>
+                </a>
+            </div>
+        </div>
 
           <!--Card content-->
           <div class="card-body">
@@ -43,7 +47,6 @@
               <h4 class="card-title">{{ pelicula.titulo }}</h4>
               <!--Text-->
               <p class="card-text">{{ pelicula.actores }}</p>
-              <a :href="pelicula.link" class="btn btn-primary">Ir a la pelicula</a>
             </div>
       </div>
       <!-- <ul>
@@ -86,7 +89,52 @@
 
 
 <style scoped>
-ul li {color: white;}
-.card-deck{background-color:red;}
-    .card{width:20%;float:left;margin-right:5px;}
+    ul li {color: white;}
+    .card-deck{background-color:red;}
+    .card{
+        padding-top:1em;
+        width:20%;
+        float:left;
+        margin:1em 1em  0 0;
+        min-height:20em;
+    }
+    h4{
+        font-size:1.4em;
+    }
+
+/* The overlay effect (full height and width) - lays on top of the container and over the image */
+.overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  transition: .3s ease;
+  background-color: rgba(0, 0, 0, 0.5)
+}
+
+/* When you mouse over the container, fade in the overlay icon*/
+.container:hover .overlay {
+  opacity: 1;
+}
+
+/* The icon inside the overlay is positioned in the middle vertically and horizontally */
+.icon {
+  color: white;
+  font-size: 100px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+/* When you move the mouse over the icon, change color */
+.fa-user:hover {
+  color: #eee;
+}
 </style>

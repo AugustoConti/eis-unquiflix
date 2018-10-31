@@ -1,13 +1,14 @@
 <template>
 
     <!-- <button disabled="disabled">Ingresar</button> -->
+    <div class="container-fluid">
     <nav id="barra-principal" class="navbar navbar-dark bg-dark sticky-top">
         <p id="unqHead-Title">UNQUIFLIX </p>
         <router-link class="btn btn-primary" to="/component1">Ingresar</router-link>
     </nav>
 
 
-
+    </div>
     <!-- <ul>
         <li v-for="item in items" :key="item" >
             {{ item.message }}
