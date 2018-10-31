@@ -1,14 +1,11 @@
 <template>
     <div class="container-fluid">
         <!-- <input type="search" class="form-control" v-model="peliculasearch" placeholder="Buscar.."> -->
+
         <nav id="barra-principal" class="navbar navbar-dark bg-dark sticky-top">
-      
-      <ul class="nav">
-        <li class="nav-item">
-          <router-link to="/">UnquiFlix</router-link>
-        </li>
-        </ul>
-        <div class="div-select">
+            <p id="unqHead-Title">UNQUIFLIX</p>
+
+         <div class="div-select">
           <select class="custom-select" v-model="peliculasearch" name="" id="">
             <option value="" disabled selected hidden>Elegir la categoria...</option>
             <option >Terror</option>
@@ -31,11 +28,11 @@
       
       <!-- <img width="100" :src="image" :alt="title" />  -->
       <!-- <h2>{{title}}</h2> -->
-      <div class="card-deck" style="margin: 1rem 1rem">TEXTO QUE HACE QUE</div>
+      
       <div class="card" v-for="pelicula in peliculaFilter" :key="pelicula.id" >
-          {{ pelicula.categoria }}
+
           <!--Card image-->
-          <img class="img-fluid" :src="'@/assets/${pelicula.image}'"  :alt="pelicula.nombre">
+          <img class="img-fluid"  src="../assets/thumb.png"  :alt="pelicula.nombre">
 
           <!--Card content-->
           <div class="card-body">
@@ -110,6 +107,14 @@
                         categoria: 'accion',
                         url: 'http://google.com',
                         image: 'thumb.png'
+                    },
+                    {
+                        id: 6,
+                        nombre: 'Esperando la carroza 4',
+                        sinopsis: 'pupupupu pupu pu pu pu ',
+                        categoria: 'accion',
+                        url: 'http://google.com',
+                        image: 'thumb.png'
                     }
                 ]
             }
@@ -123,7 +128,16 @@
 
 
 <style scoped>
-ul li {color: white;}
-.card-deck{background-color:red;}
-    .card{width:20%;float:left;margin-right:5px;}
+    ul li {color: white;}
+    .card-deck{background-color:red;}
+    .card{
+        padding-top:1em;
+        width:20%;
+        float:left;
+        margin:1em 1em  0 0;
+        min-height:20em;
+    }
+    h4{
+        font-size:1.4em;
+    }
 </style>
