@@ -35,15 +35,15 @@
       <div class="card" v-for="pelicula in peliculaFilter" :key="pelicula.id" >
           {{ pelicula.categoria }}
           <!--Card image-->
-          <img class="img-fluid" src="../assets/thumb.png" alt="Card image cap">
+          <img class="img-fluid" :src="'@/assets/${pelicula.image}'"  :alt="pelicula.nombre">
 
           <!--Card content-->
           <div class="card-body">
               <!--Title-->
               <h4 class="card-title">{{ pelicula.nombre }}</h4>
               <!--Text-->
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              <a href="#" class="btn btn-primary">Button</a>
+              <p class="card-text">{{ pelicula.sinopsis }}</p>
+              <a :href="pelicula.url" class="btn btn-primary">Ir a la pelicula</a>
             </div>
       </div>
       <!-- <ul>
@@ -71,17 +71,46 @@
             return {
                 peliculasearch: "",
                 peliculas: [
-                {
-                 id: 1,           
-                 nombre: 'Volver Al futuro',
-                 categoria: 'terror'
-                 
-                },
-                {
-                    id: 2,
-                    nombre: 'Esperando la carroza',
-                    categoria: 'romantica'
-                }
+                    {
+                        id: 1,
+                        nombre: 'Volver Al futuro',
+                        sinopsis: 'la lal lalalaalal',
+                        categoria: 'terror',
+                        url: 'http://yahoo.com',
+                        image: 'thumb.png'
+                    },
+                    {
+                        id: 2,
+                        nombre: 'Esperando la carroza',
+                        sinopsis: 'pupupupu pupu pu pu pu ',
+                        categoria: 'romantica',
+                        url: 'http://google.com',
+                        image: 'logo.png'
+                    },
+                    {
+                        id: 3,
+                        nombre: 'Esperando la carroza 2',
+                        sinopsis: 'unq unq unq ',
+                        categoria: 'romantica',
+                        url: 'http://google.com',
+                        image: 'thumb.png'
+                    },
+                    {
+                        id: 4,
+                        nombre: 'Esperando la carroza 3',
+                        sinopsis: 'pupupupu pupu pu pu pu ',
+                        categoria: 'guerra',
+                        url: 'http://google.com',
+                        image: 'thumb.png'
+                    },
+                    {
+                        id: 5,
+                        nombre: 'Esperando la carroza 4',
+                        sinopsis: 'pupupupu pupu pu pu pu ',
+                        categoria: 'accion',
+                        url: 'http://google.com',
+                        image: 'thumb.png'
+                    }
                 ]
             }
             
@@ -96,4 +125,5 @@
 <style scoped>
 ul li {color: white;}
 .card-deck{background-color:red;}
+    .card{width:20%;float:left;margin-right:5px;}
 </style>
