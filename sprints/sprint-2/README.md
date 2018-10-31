@@ -16,7 +16,7 @@
 
 ### High
 - Mejoró la comunicación entre los integrantes del grupo
-- Predispocision para desarrollo
+- Conformes con el trabajo realizado a pesar de las dificultades encontradas
 
 ### Low
 - Mejorar la distribución de tareas, para lograr que el trabajo sea equitativo
