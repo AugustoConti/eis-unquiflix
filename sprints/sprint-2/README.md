@@ -1,4 +1,4 @@
-# SPRINT 2
+﻿# SPRINT 2
 
 ## Tareas comprometidas:
 - [x] Listado segun agrupado por genero con corte de control  **8**
@@ -10,7 +10,7 @@
 - Ver listado de películas estrenadas recientemente **5** 
 
 ## Gráfico de velocidad
-- Completar
+![sprints](sprint2.png?raw=true "Velocidad en Sprints")
 
 ## Retrospectiva
 
