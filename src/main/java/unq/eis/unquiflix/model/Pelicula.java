@@ -19,17 +19,20 @@ public class Pelicula {
     private String directores;
     private String actores;
     private String link;
+    private String linkPortada;
 
     protected Pelicula() {
     }
 
-    public Pelicula(String titulo, Categoria categoria, LocalDate estreno, String directores, String actores, String link) {
+    public Pelicula(String titulo, Categoria categoria, LocalDate estreno, String directores,
+                    String actores, String link, String linkPortada) {
         this.titulo = titulo;
         this.categoria = categoria;
         this.estreno = estreno;
         this.directores = directores;
         this.actores = actores;
         this.link = link;
+        this.linkPortada = linkPortada;
     }
 
     public Integer getID(){
@@ -56,5 +59,9 @@ public class Pelicula {
 
     public String getLink() {
         return link;
+    }
+
+    public String getLinkPortada() {
+        return linkPortada;
     }
 }
