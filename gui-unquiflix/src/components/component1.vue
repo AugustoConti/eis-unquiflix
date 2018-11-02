@@ -1,9 +1,12 @@
 <template>
     <div class="container-fluid">
-        <!-- <input type="search" class="form-control" v-model="peliculasearch" placeholder="Buscar.."> -->
 
         <nav id="barra-principal" class="navbar navbar-dark bg-dark sticky-top">
             <p id="unqHead-Title">UNQUIFLIX</p>
+            <div class="div-search div-select">
+                <input type="text" id="busqueda" />
+                <button class="btn btn-primary" v-model="peliculasearch">Ingresar</button>
+            </div>
             <div class="div-select">
                 <select class="custom-select" v-model="peliculasearch" name="" id="">
                     <option value="" disabled selected hidden>Elegir la categoria...</option>
@@ -14,21 +17,7 @@
                 </select>
             </div>
         </nav>
-        
-        <!-- <div class="card" style="width: 18rem;">
-            <img class="card-img-top" src="..." alt="Card image cap">
-            <div class="card-body">
-                <h5 class="card-title"></h5>
-                <p class="card-text">some quick example text to build.</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
 
-            </div>
-        </div> -->
-
-      
-      <!-- <img width="100" :src="image" :alt="title" />  -->
-      <!-- <h2>{{title}}</h2> -->
-      
       <div class="card" v-for="pelicula in peliculaFilter" :key="pelicula.id" >
 
           <!--Card image-->
@@ -137,4 +126,8 @@
 .fa-user:hover {
   color: #eee;
 }
+    .div-search{
+        width:500px!important;
+
+    }
 </style>
