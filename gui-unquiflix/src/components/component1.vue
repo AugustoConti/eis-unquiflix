@@ -5,7 +5,7 @@
             <p id="unqHead-Title">UNQUIFLIX</p>
             <div class="div-search div-select">
                 <input type="text" id="busqueda" />
-                <button class="btn btn-primary" v-model="peliculasearch">Ingresar</button>
+                <router-linkbutton class="btn btn-primary" v-model="peliculasearch">Buscar</router-linkbutton>
             </div>
             <div class="div-select">
                 <select class="custom-select" v-model="peliculasearch" name="" id="">
@@ -68,10 +68,10 @@
         created(){
             API.get('')
             .then(pelis => this.peliculas = pelis)
-            .catch(e => console.log(e))
+
             API.get('/categories')
             .then(c => this.categorias = c)
-            .catch(e => console.log(e))
+
         }
     }
 </script>
