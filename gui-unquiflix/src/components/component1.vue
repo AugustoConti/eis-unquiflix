@@ -68,10 +68,10 @@
         created(){
             API.get('')
             .then(pelis => this.peliculas = pelis)
-
+            //.catch(e => console.log(e))
             API.get('/categories')
             .then(c => this.categorias = c)
-
+            //.catch(e => console.log(e))
         }
     }
 </script>
