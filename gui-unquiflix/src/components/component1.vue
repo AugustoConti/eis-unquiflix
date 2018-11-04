@@ -1,7 +1,14 @@
 <template>
-    <div class="container-fluid">
+    <div class="container-fluid" id="component1">
+        <!-- <input type="search" class="form-control" v-model="peliculasearch" placeholder="Buscar.."> -->
 
-        <nav id="barra-principal" class="navbar navbar-dark bg-dark sticky-top">
+        <nav id="barra-principal" class="navbar navbar-dark bg-dark fixed-top ">
+            <input type="search" v-model="peli_find" placeholder="Buscar..">
+
+            <!-- <option v-for="pelicula in peliculaFilterName" :key="pelicula.titulo">
+                        {{pelicula.titulo}}
+                    </option> -->
+                    
             <p id="unqHead-Title">UNQUIFLIX</p>
             <div class="div-search div-select">
                 <input type="text" id="busqueda" />
@@ -18,7 +25,7 @@
             </div>
         </nav>
 
-      <div class="card" v-for="pelicula in peliculaFilter" :key="pelicula.id" >
+        <div class="card" v-for="pelicula in peliculaFilterName" :key="pelicula.id" >
 
           <!--Card image-->
         <div class="container">
@@ -38,10 +45,7 @@
               <p class="card-text">{{ pelicula.actores }}</p>
             </div>
       </div>
-      <!-- <ul>
-          <li class="card-title" v-for="pelicula in peliculaFilter" :key="pelicula.id">{{ pelicula.nombre }} - {{ pelicula.categoria }}</li>
-            
-      </ul> -->
+      
     </div>
 
 </template>
@@ -53,8 +57,16 @@
             peliculaFilter: function(){
                 var peli = this.peliculasearch
                 return this.peliculas.filter(e => e.categoria.toLowerCase().indexOf(peli.toLowerCase()) !== -1)
-            }
+            },
+        
+            peliculaFilterName: function(){
+                 var peliname = this.peli_find
+                 return this.peliculaFilter.filter(e => e.titulo.toLowerCase().indexOf(peliname.toLowerCase()) !== -1)
+             },
+
         },
+
+        
 
         name: "component1",
         data() {
@@ -62,6 +74,7 @@
                 peliculasearch: "",
                 peliculas: [],
                 categorias: [],
+                peli_find: "",
             }           
         },
 
@@ -76,10 +89,16 @@
             //.catch(e => console.log(e))
         }
     }
+
+    
 </script>
 
 
 <style scoped>
+  #component1 {
+      margin-top: 100px;
+    }
+
     ul li {color: white;}
     .card-deck{background-color:red;}
     .card{

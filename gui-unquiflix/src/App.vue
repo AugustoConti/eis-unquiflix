@@ -1,8 +1,5 @@
 <template>
   <div id="app">
-
-
-
       <router-view/>
     </div>
   </template>
@@ -17,6 +14,7 @@
       margin-top: 60px;
     }*/
 
+  
 
     #barra-principal{
       height: 5rem;
@@ -25,25 +23,11 @@
       width: 15rem;
     }
     body {
-
       background: url("../src/assets/logobackChicoNegro.png") no-repeat center center fixed black !important;
       background-color:black;
-
-
-
     }
 
-    .btn-primary{
-      background: rgb(22, 96, 57)!important;
-      border-color:rgb(22, 96, 57)!important;
-      color: white;
-      margin: 0px 10px 0px 10px;
-      padding: 0 20px;
-      border-radius: 5px;
-      height: 50px;
-      line-height: 50px;
-      text-align: center;
-    }
+
 
     .container-fluid{
       padding-left:0!important;
