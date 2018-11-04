@@ -1,19 +1,8 @@
 <template>
     <div class="container-fluid" id="component1">
-        <!-- <input type="search" class="form-control" v-model="peliculasearch" placeholder="Buscar.."> -->
-
         <nav id="barra-principal" class="navbar navbar-dark bg-dark fixed-top ">
-            <input type="search" v-model="peli_find" placeholder="Buscar..">
-
-            <!-- <option v-for="pelicula in peliculaFilterName" :key="pelicula.titulo">
-                        {{pelicula.titulo}}
-                    </option> -->
-                    
             <p id="unqHead-Title">UNQUIFLIX</p>
-            <div class="div-search div-select">
-                <input type="text" id="busqueda" />
-                
-            </div>
+            <input type="search" v-model="peli_find" placeholder="Buscar..">
             <div class="div-select">
                 <select class="custom-select" v-model="peliculasearch" name="" id="">
                     <option value="" disabled selected hidden>Elegir la categoria...</option>
@@ -51,66 +40,66 @@
 </template>
 
 <script>
-    import API from '../service/api';
-    export default {
-        computed: {
-            peliculaFilter: function(){
-                var peli = this.peliculasearch
-                return this.peliculas.filter(e => e.categoria.toLowerCase().indexOf(peli.toLowerCase()) !== -1)
-            },
-        
-            peliculaFilterName: function(){
-                 var peliname = this.peli_find
-                 return this.peliculaFilter.filter(e => e.titulo.toLowerCase().indexOf(peliname.toLowerCase()) !== -1)
-             },
+import API from "../service/api";
+export default {
+  computed: {
+    peliculaFilter: function() {
+      var peli = this.peliculasearch;
+      return this.peliculas.filter(
+        e => e.categoria.toLowerCase().indexOf(peli.toLowerCase()) !== -1
+      );
+    },
 
-        },
-
-        
-
-        name: "component1",
-        data() {
-            return {
-                peliculasearch: "",
-                peliculas: [],
-                categorias: [],
-                peli_find: "",
-            }           
-        },
-
-        created(){
-            API.get('')
-            .then(pelis => this.peliculas = pelis)
-                .catch(e=> alert(e))
-            //.catch(e => console.log(e))
-            API.get('/categories')
-            .then(c => this.categorias = c)
-                .catch(e=> alert(e))
-            //.catch(e => console.log(e))
-        }
+    peliculaFilterName: function() {
+      var peliname = this.peli_find;
+      return this.peliculaFilter.filter(
+        e => e.titulo.toLowerCase().indexOf(peliname.toLowerCase()) !== -1
+      );
     }
+  },
 
-    
+  name: "component1",
+  data() {
+    return {
+      peliculasearch: "",
+      peliculas: [],
+      categorias: [],
+      peli_find: ""
+    };
+  },
+
+  created() {
+    API.get("")
+      .then(pelis => (this.peliculas = pelis))
+      .catch(e => alert(e));
+    API.get("/categories")
+      .then(c => (this.categorias = c))
+      .catch(e => alert(e));
+  }
+};
 </script>
 
-
 <style scoped>
-  #component1 {
-      margin-top: 100px;
-    }
+#component1 {
+  margin-top: 100px;
+}
 
-    ul li {color: white;}
-    .card-deck{background-color:red;}
-    .card{
-        padding-top:1em;
-        width:20%;
-        float:left;
-        margin:1em 1em  0 0;
-        min-height:20em;
-    }
-    h4{
-        font-size:1.4em;
-    }
+ul li {
+  color: white;
+}
+.card-deck {
+  background-color: red;
+}
+.card {
+  padding-top: 1em;
+  width: 20%;
+  float: left;
+  margin: 1em 1em 0 0;
+  min-height: 20em;
+}
+h4 {
+  font-size: 1.4em;
+}
 
 /* The overlay effect (full height and width) - lays on top of the container and over the image */
 .overlay {
@@ -122,8 +111,8 @@
   height: 100%;
   width: 100%;
   opacity: 0;
-  transition: .3s ease;
-  background-color: rgba(0, 0, 0, 0.5)
+  transition: 0.3s ease;
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
 /* When you mouse over the container, fade in the overlay icon*/
@@ -147,8 +136,7 @@
 .fa-user:hover {
   color: #eee;
 }
-    .div-search{
-        width:500px!important;
-
-    }
+.div-search {
+  width: 500px !important;
+}
 </style>
