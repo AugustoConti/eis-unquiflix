@@ -11,8 +11,7 @@ import unq.eis.unquiflix.service.PeliculaService;
 
 import java.time.LocalDate;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -45,6 +44,13 @@ public class UnquiflixApplicationTests {
     @Test
     public void getPeliculaVolverAlFuturoByID() {
         assertVolverAlFuturo(peliService.getPelicula(1));
+    }
+
+    @Test
+    public void cambioEstadoActivacion() {
+        assertTrue(peliService.getPelicula(1).getActiva());
+        peliService.cambiarActivacion(1);
+        assertFalse(peliService.getPelicula(1).getActiva());
     }
 
 }

@@ -84,6 +84,14 @@ public class PeliculaService {
         return peliRepository.findAllByCategoria(Categoria.valueOf(categoria));
     }
 
+    @GetMapping(value = "/activacion/{id}")
+    public @ResponseBody
+    void cambiarActivacion(@PathVariable Integer id) {
+        Pelicula peli = peliRepository.findById(id).get();
+        peli.cambiarActivacion();
+        peliRepository.save(peli);
+    }
+
     @GetMapping(value="/categories")
     public @ResponseBody Iterable<Categoria> getAllCategories() {
         return Arrays.asList(Categoria.values());
