@@ -10,6 +10,10 @@
                     </option> -->
                     
             <p id="unqHead-Title">UNQUIFLIX</p>
+            <div class="div-search div-select">
+                <input type="text" id="busqueda" />
+                
+            </div>
             <div class="div-select">
                 <select class="custom-select" v-model="peliculasearch" name="" id="">
                     <option value="" disabled selected hidden>Elegir la categoria...</option>
@@ -77,10 +81,12 @@
         created(){
             API.get('')
             .then(pelis => this.peliculas = pelis)
-            .catch(e => console.log(e))
+                .catch(e=> alert(e))
+            //.catch(e => console.log(e))
             API.get('/categories')
             .then(c => this.categorias = c)
-            .catch(e => console.log(e))
+                .catch(e=> alert(e))
+            //.catch(e => console.log(e))
         }
     }
 
@@ -141,4 +147,8 @@
 .fa-user:hover {
   color: #eee;
 }
+    .div-search{
+        width:500px!important;
+
+    }
 </style>
