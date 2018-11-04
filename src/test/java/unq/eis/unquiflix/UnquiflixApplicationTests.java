@@ -33,6 +33,8 @@ public class UnquiflixApplicationTests {
         assertEquals("Robert Zemeckis", vaf.getDirectores());
         assertEquals("Michael J. Fox, Christopher Lloyd, Crispin Glover, Lea Thompson", vaf.getActores());
         assertEquals("https://www.youtube.com/watch?v=qvsgGtivCgs", vaf.getLink());
+        assertEquals("https://m.media-amazon.com/images/M/MV5BZmU0M2Y1OGUtZjIxNi00ZjBkLTg1MjgtOWIyNThiZWIwYjRiXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_SY1000_CR0,0,643,1000_AL_.jpg",
+                vaf.getLinkPortada());
     }
 
     @Test
