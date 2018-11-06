@@ -24,9 +24,5 @@ before_install:
 before_script:
   - mysql -uroot -proot -e 'create database unquiflix;'
 
-script:
-  - ./gradlew check
-  - ./gradlew codeCoverageReport
-
 after_success:
   - bash <(curl -s https://codecov.io/bash)

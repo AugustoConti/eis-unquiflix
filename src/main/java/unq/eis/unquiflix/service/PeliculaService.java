@@ -69,18 +69,21 @@ public class PeliculaService {
                 "https://m.media-amazon.com/images/M/MV5BYzE5MjY1ZDgtMTkyNC00MTMyLThhMjAtZGI5OTE1NzFlZGJjXkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_UX182_CR0,0,182,268_AL_.jpg"));
     }
 
-    @GetMapping(value="/{id}")
-    public @ResponseBody Pelicula getPelicula(@PathVariable Integer id) {
+    @GetMapping(value = "/{id}")
+    public @ResponseBody
+    Pelicula getPelicula(@PathVariable Integer id) {
         return peliRepository.findById(id).get();
     }
 
-    @GetMapping(value="/find/{title}")
-    public @ResponseBody Pelicula getPeliculaByTitle(@PathVariable String title) {
+    @GetMapping(value = "/find/{title}")
+    public @ResponseBody
+    Pelicula getPeliculaByTitle(@PathVariable String title) {
         return peliRepository.findByTitulo(title);
     }
 
-    @GetMapping(value="/category/{categoria}")
-    public @ResponseBody Iterable<Pelicula> getPeliculasByCategory(@PathVariable String categoria) {
+    @GetMapping(value = "/category/{categoria}")
+    public @ResponseBody
+    Iterable<Pelicula> getPeliculasByCategory(@PathVariable String categoria) {
         return peliRepository.findAllByCategoria(Categoria.valueOf(categoria));
     }
 
@@ -92,8 +95,9 @@ public class PeliculaService {
         peliRepository.save(peli);
     }
 
-    @GetMapping(value="/categories")
-    public @ResponseBody Iterable<Categoria> getAllCategories() {
+    @GetMapping(value = "/categories")
+    public @ResponseBody
+    Iterable<Categoria> getAllCategories() {
         return Arrays.asList(Categoria.values());
     }
 

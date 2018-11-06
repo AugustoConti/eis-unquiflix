@@ -72,6 +72,6 @@ public class Pelicula {
     }
 
     public void cambiarActivacion() {
-        this.activa = !this.activa;
+        activa = !activa;
     }
 }
