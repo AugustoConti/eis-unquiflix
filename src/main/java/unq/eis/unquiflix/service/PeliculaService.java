@@ -15,8 +15,12 @@ import java.util.Arrays;
 @RestController
 public class PeliculaService {
 
+    private final PeliculaRepository peliRepository;
+
     @Autowired
-    private PeliculaRepository peliRepository;
+    public PeliculaService(PeliculaRepository peliRepository) {
+        this.peliRepository = peliRepository;
+    }
 
     @EventListener
     public void appReady(ApplicationReadyEvent event) {
