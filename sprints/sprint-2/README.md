@@ -1,4 +1,4 @@
-# SPRINT 2
+﻿# SPRINT 2
 
 ## Tareas comprometidas:
 - [x] Listado segun agrupado por genero con corte de control  **8**
