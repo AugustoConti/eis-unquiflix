@@ -23,13 +23,16 @@
                 <a :href="pelicula.link" class="icon" title="Play">
                 <i class="fa fa-play-circle"></i>
                 </a>
+                <span   v-on:click="togglePelicula(pelicula)" class="disabler" title="Activar / Desactivar">
+                    <i class="fa fa-toggle-on"></i>
+                </span>
             </div>
         </div>
 
           <!--Card content-->
           <div class="card-body">
               <!--Title-->
-              <h4 class="card-title">{{ pelicula.titulo }}</h4>
+              <h4 v-bind:class="[card-title, {noActiva:!pelicula.activa}]" >{{ pelicula.titulo }}</h4>
               <!--Text-->
               <p class="card-text">{{ pelicula.actores }}</p>
             </div>
@@ -41,6 +44,7 @@
 
 <script>
 import API from "../service/api";
+
 export default {
   computed: {
     peliculaFilter: function() {
@@ -52,7 +56,9 @@ export default {
 
     peliculaFilterName: function() {
       var peliname = this.peli_find;
+
       return this.peliculaFilter.filter(
+
         e => e.titulo.toLowerCase().indexOf(peliname.toLowerCase()) !== -1
       );
     }
@@ -69,14 +75,36 @@ export default {
   },
 
   created() {
-    API.get("")
-      .then(pelis => (this.peliculas = pelis))
-      .catch(e => alert(e));
+    this.leerPeliculas()
+
     API.get("/categories")
       .then(c => (this.categorias = c))
       .catch(e => alert(e));
-  }
-};
+
+
+  },
+
+    methods:{
+
+        leerPeliculas(){
+            API.get("")
+                .then(pelis => (this.peliculas = pelis))
+                .catch(e => alert(e));
+
+
+        },
+        togglePelicula(pelicula){
+            API.get("/activacion/"+pelicula.id)
+                .then(
+                    (response) => {}
+                )
+                .catch(e=>alert(e))
+            this.leerPeliculas()
+            
+
+        }
+
+    }};
 </script>
 
 <style scoped>
@@ -136,7 +164,28 @@ h4 {
 .fa-user:hover {
   color: #eee;
 }
-.div-search {
-  width: 500px !important;
+
+/*Item de menu activacion */
+.disabler {
+    color: white;
+    font-size: 40px;
+    position: absolute;
+    top: 20px;
+    right: 0px;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    text-align: center;
 }
+.fa-toggle-on{
+    font-size: 30px!important;
+}
+
+.div-search {
+    width: 500px !important;
+}
+    .noActiva{
+        color:red!important;
+    }
+
+
 </style>
