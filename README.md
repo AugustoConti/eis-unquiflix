@@ -16,7 +16,8 @@ Augusto Conti    | augustoconti10@gmail.com
 ### Coverage
 [![codecov](https://codecov.io/gh/AugustoConti/eis-unquiflix/branch/master/graph/badge.svg?branch=master)](https://codecov.io/gh/AugustoConti/eis-unquiflix?branch=master)
 
-- [Tablero Backlog](https://trello.com/b/0P9U9xaA/unquiflix)
+### Backlog
+- [Tablero Trello](https://trello.com/b/0P9U9xaA/unquiflix)
 
 ## Sprints
 
