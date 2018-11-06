@@ -95,7 +95,7 @@ public class PeliculaService {
     public @ResponseBody
     void cambiarActivacion(@PathVariable Integer id) {
         Pelicula peli = peliRepository.findById(id).get();
-        peli.cambiarActivacion();
+        peli.setActiva(!peli.getActiva());
         peliRepository.save(peli);
     }
 

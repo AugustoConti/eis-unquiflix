@@ -71,7 +71,7 @@ public class Pelicula {
         return activa;
     }
 
-    public void cambiarActivacion() {
-        activa = !activa;
+    public void setActiva(Boolean value) {
+        activa = value;
     }
 }
