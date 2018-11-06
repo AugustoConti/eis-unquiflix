@@ -15,8 +15,12 @@ import java.util.Arrays;
 @RestController
 public class PeliculaService {
 
+    private final PeliculaRepository peliRepository;
+
     @Autowired
-    private PeliculaRepository peliRepository;
+    public PeliculaService(PeliculaRepository peliRepository) {
+        this.peliRepository = peliRepository;
+    }
 
     @EventListener
     public void appReady(ApplicationReadyEvent event) {
@@ -69,23 +73,35 @@ public class PeliculaService {
                 "https://m.media-amazon.com/images/M/MV5BYzE5MjY1ZDgtMTkyNC00MTMyLThhMjAtZGI5OTE1NzFlZGJjXkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_UX182_CR0,0,182,268_AL_.jpg"));
     }
 
-    @GetMapping(value="/{id}")
-    public @ResponseBody Pelicula getPelicula(@PathVariable Integer id) {
+    @GetMapping(value = "/{id}")
+    public @ResponseBody
+    Pelicula getPelicula(@PathVariable Integer id) {
         return peliRepository.findById(id).get();
     }
 
-    @GetMapping(value="/find/{title}")
-    public @ResponseBody Pelicula getPeliculaByTitle(@PathVariable String title) {
+    @GetMapping(value = "/find/{title}")
+    public @ResponseBody
+    Pelicula getPeliculaByTitle(@PathVariable String title) {
         return peliRepository.findByTitulo(title);
     }
 
-    @GetMapping(value="/category/{categoria}")
-    public @ResponseBody Iterable<Pelicula> getPeliculasByCategory(@PathVariable String categoria) {
+    @GetMapping(value = "/category/{categoria}")
+    public @ResponseBody
+    Iterable<Pelicula> getPeliculasByCategory(@PathVariable String categoria) {
         return peliRepository.findAllByCategoria(Categoria.valueOf(categoria));
     }
 
-    @GetMapping(value="/categories")
-    public @ResponseBody Iterable<Categoria> getAllCategories() {
+    @GetMapping(value = "/activacion/{id}")
+    public @ResponseBody
+    void cambiarActivacion(@PathVariable Integer id) {
+        Pelicula peli = peliRepository.findById(id).get();
+        peli.setActiva(!peli.getActiva());
+        peliRepository.save(peli);
+    }
+
+    @GetMapping(value = "/categories")
+    public @ResponseBody
+    Iterable<Categoria> getAllCategories() {
         return Arrays.asList(Categoria.values());
     }
 

@@ -20,6 +20,7 @@ public class Pelicula {
     private String actores;
     private String link;
     private String linkPortada;
+    private Boolean activa;
 
     protected Pelicula() {
     }
@@ -33,6 +34,7 @@ public class Pelicula {
         this.actores = actores;
         this.link = link;
         this.linkPortada = linkPortada;
+        this.activa = true;
     }
 
     public Integer getID(){
@@ -63,5 +65,13 @@ public class Pelicula {
 
     public String getLinkPortada() {
         return linkPortada;
+    }
+
+    public Boolean getActiva() {
+        return activa;
+    }
+
+    public void setActiva(Boolean value) {
+        activa = value;
     }
 }

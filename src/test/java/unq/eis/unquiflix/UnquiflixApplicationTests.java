@@ -10,9 +10,9 @@ import unq.eis.unquiflix.model.Pelicula;
 import unq.eis.unquiflix.service.PeliculaService;
 
 import java.time.LocalDate;
+import java.util.Arrays;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -47,4 +47,19 @@ public class UnquiflixApplicationTests {
         assertVolverAlFuturo(peliService.getPelicula(1));
     }
 
+    @Test
+    public void peliculaInicializaActivada() {
+        assertTrue(peliService.getPelicula(1).getActiva());
+    }
+
+    @Test
+    public void descativoPelicula() {
+        peliService.cambiarActivacion(1);
+        assertFalse(peliService.getPelicula(1).getActiva());
+    }
+
+    @Test
+    public void todasLasCategorias() {
+        assertEquals(Arrays.asList(Categoria.values()), peliService.getAllCategories());
+    }
 }
