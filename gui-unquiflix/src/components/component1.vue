@@ -95,12 +95,9 @@ export default {
         },
         togglePelicula(pelicula){
             API.get("/activacion/"+pelicula.id)
-                .then(
-                    (response) => {}
-                )
                 .catch(e=>alert(e))
             this.leerPeliculas()
-            
+
 
         }
 
