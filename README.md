@@ -10,8 +10,10 @@ Martin Kopecek   | kopecek.mk@gmail.com
 Enrique Alonso   | alonso.em@gmail.com
 Augusto Conti    | augustoconti10@gmail.com
 
+### CI
 [![Build Status](https://travis-ci.org/AugustoConti/eis-unquiflix.svg?branch=master)](https://travis-ci.org/AugustoConti/eis-unquiflix)
 
+### Coverage
 [![codecov](https://codecov.io/gh/AugustoConti/eis-unquiflix/branch/master/graph/badge.svg?branch=master)](https://codecov.io/gh/AugustoConti/eis-unquiflix?branch=master)
 
 - [Tablero Backlog](https://trello.com/b/0P9U9xaA/unquiflix)
