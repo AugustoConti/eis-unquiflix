@@ -10,6 +10,7 @@ import unq.eis.unquiflix.model.Pelicula;
 import unq.eis.unquiflix.service.PeliculaService;
 
 import java.time.LocalDate;
+import java.util.Arrays;
 
 import static org.junit.Assert.*;
 
@@ -53,4 +54,8 @@ public class UnquiflixApplicationTests {
         assertFalse(peliService.getPelicula(1).getActiva());
     }
 
+    @Test
+    public void todasLasCategorias() {
+        assertEquals(Arrays.asList(Categoria.values()), peliService.getAllCategories());
+    }
 }
