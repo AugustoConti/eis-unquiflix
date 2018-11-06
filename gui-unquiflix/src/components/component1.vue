@@ -30,7 +30,7 @@
         </div>
 
           <!--Card content-->
-          <div class="card-body">
+          <div class="card-body" >
               <!--Title-->
               <h4 v-bind:class="[card-title, {noActiva:!pelicula.activa}]" >{{ pelicula.titulo }}</h4>
               <!--Text-->
@@ -56,12 +56,12 @@ export default {
 
     peliculaFilterName: function() {
       var peliname = this.peli_find;
-
       return this.peliculaFilter.filter(
-
         e => e.titulo.toLowerCase().indexOf(peliname.toLowerCase()) !== -1
       );
-    }
+    },
+
+
   },
 
   name: "component1",
@@ -78,8 +78,10 @@ export default {
     this.leerPeliculas()
 
     API.get("/categories")
-      .then(c => (this.categorias = c))
+      .then(c => (this.categorias = c)
+       )
       .catch(e => alert(e));
+
 
 
   },
@@ -97,8 +99,6 @@ export default {
             API.get("/activacion/"+pelicula.id)
                 .catch(e=>alert(e))
             this.leerPeliculas()
-
-
         }
 
     }};
