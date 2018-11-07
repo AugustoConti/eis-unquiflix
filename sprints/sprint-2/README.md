@@ -1,4 +1,4 @@
-﻿# SPRINT 2
+# SPRINT 2
 
 ## Tareas comprometidas:
 - [x] Listado segun agrupado por genero con corte de control  **8**
@@ -7,7 +7,6 @@
 ## Estimación de tareas del siguiente sprint
 - Activacion / Desactivacion de Peliculas **3**
 - Busqueda de películas por título **3**
-- Ver listado de películas estrenadas recientemente **5** 
 
 ## Gráfico de velocidad
 ![sprints](sprint2.png?raw=true "Velocidad en Sprints")
