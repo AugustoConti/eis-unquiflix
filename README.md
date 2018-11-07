@@ -23,3 +23,4 @@ Augusto Conti    | augustoconti10@gmail.com
 
 - [Sprint 1](./sprints/sprint-1/README.md)
 - [Sprint 2](./sprints/sprint-2/README.md)
+- [Sprint 3](./sprints/sprint-3/README.md)
