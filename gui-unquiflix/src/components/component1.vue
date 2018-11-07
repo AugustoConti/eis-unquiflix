@@ -14,7 +14,7 @@
             </div>
         </nav>
 
-        <div class="card" v-for="pelicula in peliculaFilterName" :key="pelicula.id" >
+        <div class="card" v-for="pelicula in peliculaFilterName" :key="pelicula.id" v-bind:class="[card-title, {noActiva:!pelicula.activa}]">
 
           <!--Card image-->
         <div class="container">
@@ -32,7 +32,7 @@
           <!--Card content-->
           <div class="card-body" >
               <!--Title-->
-              <h4 v-bind:class="[card-title, {noActiva:!pelicula.activa}]" >{{ pelicula.titulo }}</h4>
+              <h4 >{{ pelicula.titulo }}</h4>
               <!--Text-->
               <p class="card-text">{{ pelicula.actores }}</p>
             </div>
@@ -92,13 +92,18 @@ export default {
             API.get("")
                 .then(pelis => (this.peliculas = pelis))
                 .catch(e => alert(e));
-
-
         },
+
         togglePelicula(pelicula){
             API.get("/activacion/"+pelicula.id)
+                .then(
+
+                        response => this.leerPeliculas()
+                    )
+
+
                 .catch(e=>alert(e))
-            this.leerPeliculas()
+
         }
 
     }};
@@ -176,12 +181,17 @@ h4 {
 .fa-toggle-on{
     font-size: 30px!important;
 }
+.fa-toggle-on:hover{
+    cursor: pointer!important;
+}
+
 
 .div-search {
     width: 500px !important;
 }
     .noActiva{
-        color:red!important;
+
+        background-color:red!important;
     }
 
 
