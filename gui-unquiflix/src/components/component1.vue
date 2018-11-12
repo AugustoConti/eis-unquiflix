@@ -14,32 +14,36 @@
             </div>
         </nav>
 
-        <div class="card" v-for="pelicula in peliculaFilterName" :key="pelicula.id" v-bind:class="[card-title, {noActiva:!pelicula.activa}]">
+        <div v-for="cat in categoriaFiltered" :key="cat" >
+            <h3 class="categoriaHead" >{{cat}} </h3>
+            <p class="card-container">
+            <div class="card" v-for="pelicula in peliculasPorCategoria(cat)" :key="pelicula.id" v-bind:class="[card-title, {noActiva:!pelicula.activa}]">
 
-          <!--Card image-->
-        <div class="container">
-            <img class="img-fluid image" :src="pelicula.linkPortada"  :alt="pelicula.titulo">
-            <div class="overlay">
-                <a :href="pelicula.link" class="icon" title="Play">
-                <i class="fa fa-play-circle"></i>
-                </a>
-                <span   v-on:click="togglePelicula(pelicula)" class="disabler" title="Activar / Desactivar">
-                    <i class="fa fa-toggle-on"></i>
-                </span>
+               <!--Card image-->
+               <div class="container">
+                    <img class="img-fluid image" :src="pelicula.linkPortada"  :alt="pelicula.titulo">
+                    <div class="overlay">
+                        <a :href="pelicula.link" class="icon" title="Play">
+                            <i class="fa fa-play-circle"></i>
+                        </a>
+                        <span   v-on:click="togglePelicula(pelicula)" class="disabler" title="Activar / Desactivar">
+                            <i class="fa fa-toggle-on"></i>
+                        </span>
+                    </div>
+                </div>
+
+                <!--Card content-->
+                <div class="card-body" >
+                    <!--Title-->
+                    <h4 >{{ pelicula.titulo }}</h4>
+                    <!--Text-->
+                    <p class="card-text">{{ pelicula.actores }}</p>
+                </div>
             </div>
+            </p>
+
         </div>
-
-          <!--Card content-->
-          <div class="card-body" >
-              <!--Title-->
-              <h4 >{{ pelicula.titulo }}</h4>
-              <!--Text-->
-              <p class="card-text">{{ pelicula.actores }}</p>
-            </div>
-      </div>
-      
     </div>
-
 </template>
 
 <script>
@@ -61,7 +65,13 @@ export default {
       );
     },
 
-
+    categoriaFiltered: function(){
+      return this.peliculaFilterName
+           .map(peli=>peli.categoria)
+           .filter(function(elem, pos, arr) {
+           return arr.indexOf(elem) == pos;
+      });
+    }
   },
 
   name: "component1",
@@ -100,10 +110,11 @@ export default {
 
                         response => this.leerPeliculas()
                     )
-
-
                 .catch(e=>alert(e))
+        },
 
+        peliculasPorCategoria(categoria){
+            return this.peliculaFilterName.filter(pelicula =>pelicula.categoria==categoria);
         }
 
     }};
@@ -193,6 +204,18 @@ h4 {
 
         background-color:red!important;
     }
-
+.categoriaHead{
+    position:relative;
+    float:left;
+    clear:both;
+    color:#337ab7;
+    font-weight: bold;
+    height:10px;
+    line-height:10px;
+    padding-top:50px;
+}
+.card-container {
+    clear:left;
+}
 
 </style>
