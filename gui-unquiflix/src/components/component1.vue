@@ -5,7 +5,7 @@
             <input type="search" v-model="peli_find" placeholder="Buscar..">
             <div class="div-select">
                 <select class="custom-select" v-model="peliculasearch" name="" id="">
-                    <option value="" disabled selected hidden>Elegir la categoria...</option>
+                    <option value="" disabled selected hidden>Elegir categoría</option>
                     <option v-for="cate in categorias" :key="cate">
                         {{cate}}
                     </option>
@@ -13,41 +13,69 @@
                 </select>
             </div>
         </nav>
-
-        <div v-for="cat in categoriaFiltered" :key="cat" >
-            <h3 class="categoriaHead" >{{cat}} </h3>
-            <p class="card-container">
-            <div class="card" v-for="pelicula in peliculasPorCategoria(cat)" :key="pelicula.id" v-bind:class="[card-title, {noActiva:!pelicula.activa}]">
-
-               <!--Card image-->
-               <div class="container">
-                    <img class="img-fluid image" :src="pelicula.linkPortada"  :alt="pelicula.titulo">
-                    <div class="overlay">
-                        <a :href="pelicula.link" class="icon" title="Play">
-                            <i class="fa fa-play-circle"></i>
-                        </a>
-                        <span   v-on:click="togglePelicula(pelicula)" class="disabler" title="Activar / Desactivar">
-                            <i class="fa fa-toggle-on"></i>
-                        </span>
+        <div v-if="!peli_find && !peliculasearch">
+            <h3 class="text-white d-inline-block mr-3">Estrenos de los últimos: </h3>
+            <div class="div-select d-inline-block">
+                <select class="custom-select" v-model="estreno" name="" id="">
+                    <option v-for="d in [
+                        {value: 3, desc: '3 días'},
+                        {value: 7, desc: 'Semana'},
+                        {value: 30, desc: 'Mes'}
+                    ]" :value="d.value" :key="d.value">
+                        {{d.desc}}
+                    </option>
+                </select>
+            </div>
+            <div class="card-container">
+                <div class="card" v-for="pelicula in peliculasPorEstreno()" :key="pelicula.id">
+                    <div class="container">
+                        <img class="img-fluid image" :src="pelicula.linkPortada" :alt="pelicula.titulo">
+                        <div class="overlay">
+                            <a :href="pelicula.link" class="icon" title="Play">
+                                <i class="fa fa-play-circle"></i>
+                            </a>
+                            <span v-on:click="togglePelicula(pelicula)" class="disabler" title="Activar / Desactivar">
+                                <i :class="[ pelicula.activa ? 'fa fa-eye' : 'fa fa-eye-slash']"></i>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <h4>{{ pelicula.titulo }}</h4>
+                        <p class="card-text">{{ pelicula.actores }}</p>
                     </div>
                 </div>
-
-                <!--Card content-->
-                <div class="card-body" >
-                    <!--Title-->
-                    <h4 >{{ pelicula.titulo }}</h4>
-                    <!--Text-->
-                    <p class="card-text">{{ pelicula.actores }}</p>
+            </div>
+        </div>
+        <div v-for="cat in categoriaFiltered" :key="cat" >
+            <h3 class="categoriaHead" >{{cat}} </h3>
+            <div class="card-container">
+                <div class="card" v-for="pelicula in peliculasPorCategoria(cat)" :key="pelicula.id"
+                     v-bind:class="[{noActiva:!pelicula.activa}]">
+                    <div class="container">
+                        <img class="img-fluid image" :src="pelicula.linkPortada" :alt="pelicula.titulo">
+                        <div class="overlay">
+                            <a :href="pelicula.link" class="icon">
+                                <i class="fa fa-play-circle"></i>
+                            </a>
+                            <span v-on:click="togglePelicula(pelicula)" class="disabler">
+                                <i :class="[ pelicula.activa ? 'fa fa-eye' : 'fa fa-eye-slash']"></i>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <h4>{{ pelicula.titulo }}</h4>
+                        <p class="card-text">{{ pelicula.actores }}</p>
+                    </div>
                 </div>
             </div>
-            </p>
-
         </div>
     </div>
 </template>
 
 <script>
 import API from "../service/api";
+import {subDays} from "date-fns";
+import moment from "moment";
 
 export default {
   computed: {
@@ -65,12 +93,14 @@ export default {
       );
     },
 
-    categoriaFiltered: function(){
+      categoriaFiltered: function () {
       return this.peliculaFilterName
-           .map(peli=>peli.categoria)
-           .filter(function(elem, pos, arr) {
-           return arr.indexOf(elem) == pos;
-      });
+          .map(peli = > peli.categoria
+      )
+      .
+          filter(function (elem, pos, arr) {
+              return arr.indexOf(elem) == pos;
+          });
     }
   },
 
@@ -80,44 +110,61 @@ export default {
       peliculasearch: "",
       peliculas: [],
       categorias: [],
-      peli_find: ""
+        peli_find: "",
+        estreno: 3
     };
   },
 
   created() {
-    this.leerPeliculas()
+      this.leerPeliculas();
 
     API.get("/categories")
-      .then(c => (this.categorias = c)
-       )
+        .then(c = > (this.categorias = c)
+  )
       .catch(e => alert(e));
-
-
-
   },
 
-    methods:{
-
-        leerPeliculas(){
+    methods: {
+        leerPeliculas() {
             API.get("")
-                .then(pelis => (this.peliculas = pelis))
-                .catch(e => alert(e));
+                .then(pelis = > (this.peliculas = pelis)
+        )
+        .
+            catch(e = > alert(e)
+        )
+            ;
         },
 
-        togglePelicula(pelicula){
-            API.get("/activacion/"+pelicula.id)
-                .then(
-
-                        response => this.leerPeliculas()
-                    )
-                .catch(e=>alert(e))
+        togglePelicula(pelicula) {
+            API.get("/activacion/" + pelicula.id)
+                .then(() = > this.leerPeliculas()
+        )
+        .
+            catch(e = > alert(e)
+        )
+            ;
         },
 
-        peliculasPorCategoria(categoria){
-            return this.peliculaFilterName.filter(pelicula =>pelicula.categoria==categoria);
+        peliculasPorCategoria(categoria) {
+            return this.peliculaFilterName.filter(
+                pelicula = > pelicula.categoria == categoria
+        )
+            ;
+        },
+
+        peliculasPorEstreno() {
+            return this.peliculas.filter(pelicula = > {
+                console.log(subDays(new Date(), this.estreno));
+            console.log(moment(pelicula.estreno, "YYYY-MM-DD"));
+            return (
+                moment(pelicula.estreno, "YYYY-MM-DD") >=
+                subDays(new Date(), this.estreno)
+            );
+        })
+            ;
         }
-
-    }};
+    }
+};
 </script>
 
 <style scoped>
@@ -189,33 +236,34 @@ h4 {
     -ms-transform: translate(-50%, -50%);
     text-align: center;
 }
-.fa-toggle-on{
-    font-size: 30px!important;
-}
-.fa-toggle-on:hover{
-    cursor: pointer!important;
+
+.fa-toggle-on {
+    font-size: 30px !important;
 }
 
+.fa-toggle-on:hover {
+    cursor: pointer !important;
+}
 
 .div-search {
     width: 500px !important;
 }
-    .noActiva{
 
-        background-color:red!important;
-    }
-.categoriaHead{
-    position:relative;
-    float:left;
-    clear:both;
-    color:#337ab7;
+.noActiva {
+    background-color: rgb(112, 0, 0) !important;
+}
+
+.categoriaHead {
+    position: relative;
+    float: left;
+    clear: both;
+    color: #337ab7;
     font-weight: bold;
-    height:10px;
-    line-height:10px;
-    padding-top:50px;
+    height: 10px;
+    line-height: 10px;
+    padding-top: 50px;
 }
 .card-container {
-    clear:left;
+    clear: left;
 }
-
 </style>
