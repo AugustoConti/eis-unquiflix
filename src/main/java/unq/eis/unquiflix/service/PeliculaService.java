@@ -52,7 +52,7 @@ public class PeliculaService {
                 "Peter Jackson",
                 "Elijah Wood, Ian McKellen, Orlando Bloom, Viggo Mortensen",
                 "https://www.youtube.com/watch?v=LbfMDwc4azU",
-                "https://m.media-amazon.com/images/M/MV5BMDY0NmI4ZjctN2VhZS00YzExLTkyZGItMTJhOTU5NTg4MDU4XkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_.jpg"));
+                "https://m.media-amazon.com/images/M/MV5BNGE5MzIyNTAtNWFlMC00NDA2LWJiMjItMjc4Yjg1OWM5NzhhXkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_SY1000_CR0,0,684,1000_AL_.jpg"));
 
         peliRepository.save(new Pelicula("El señor de los anillos: El retorno del rey", Categoria.DRAMA, LocalDate.of(2003, 1, 2),
                 "Peter Jackson",
@@ -68,9 +68,33 @@ public class PeliculaService {
 
         peliRepository.save(new Pelicula("Deadpool", Categoria.COMEDIA, LocalDate.of(2016, 2, 11),
                 "Tim Miller",
-                " Ryan Reynolds, Morena Baccarin, T.J. Miller",
+                "Ryan Reynolds, Morena Baccarin, T.J. Miller",
                 "https://www.youtube.com/watch?v=0JnRdfiUMa8",
                 "https://m.media-amazon.com/images/M/MV5BYzE5MjY1ZDgtMTkyNC00MTMyLThhMjAtZGI5OTE1NzFlZGJjXkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_UX182_CR0,0,182,268_AL_.jpg"));
+
+        peliRepository.save(new Pelicula("Bohemian Rhapsody", Categoria.DRAMA, LocalDate.of(2018, 11, 12),
+                "Bryan Singer",
+                "Rami Malek, Gwilym Lee, Ben Hardy, Joseph Mazzello",
+                "https://www.youtube.com/watch?v=pOYt7PmH_o8",
+                "https://m.media-amazon.com/images/M/MV5BNDg2NjIxMDUyNF5BMl5BanBnXkFtZTgwMzEzNTE1NTM@._V1_SY1000_CR0,0,629,1000_AL_.jpg"));
+
+        peliRepository.save(new Pelicula("Operación Overlord", Categoria.ACCION, LocalDate.of(2018, 11, 8),
+                "Julius Avery",
+                "Jovan Adepo, Wyatt Russell, Mathilde Ollivier",
+                "https://www.youtube.com/watch?v=oAgsgbh-32s",
+                "https://m.media-amazon.com/images/M/MV5BNzU0NTI1MTU2M15BMl5BanBnXkFtZTgwNTg4MDIzNjM@._V1_SY1000_CR0,0,639,1000_AL_.jpg"));
+
+        peliRepository.save(new Pelicula("Nace una estrella", Categoria.DRAMA, LocalDate.of(2018, 11, 1),
+                "Bradley Cooper",
+                "Lady Gaga, Bradley Cooper, Sam Elliott",
+                "https://www.youtube.com/watch?v=nSbzyEJ8X9E",
+                "https://m.media-amazon.com/images/M/MV5BMjE3MDQ0MTA3M15BMl5BanBnXkFtZTgwMDMwNDY2NTM@._V1_SY1000_CR0,0,674,1000_AL_.jpg"));
+
+        peliRepository.save(new Pelicula("Animales Fantásticos: Los crímenes de Grindelwald", Categoria.FICCION, LocalDate.of(2018, 11, 1),
+                "David Yates",
+                "Eddie Redmayne, Katherine Waterston, Dan Fogler",
+                "https://www.youtube.com/watch?v=liHMfhux9M4",
+                "https://m.media-amazon.com/images/M/MV5BMjAxMjM3NjAzM15BMl5BanBnXkFtZTgwNDQxNjA1NjM@._V1_SY1000_CR0,0,674,1000_AL_.jpg"));
     }
 
     @GetMapping(value = "/{id}")
