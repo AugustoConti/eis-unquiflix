@@ -5,7 +5,9 @@ import store from './store'
 import 'bootstrap/scss/bootstrap.scss'
 import 'mdbootstrap/scss/mdb.scss'
 import 'mdbootstrap/scss/style.scss'
+import VModal from 'vue-js-modal'
 
+Vue.use(VModal)
 Vue.config.productionTip = false
 
 new Vue({

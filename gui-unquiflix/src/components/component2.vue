@@ -1,43 +1,34 @@
-<template>
-    <div class="container-fluid" id="component1">
-        <nav id="barra-principal" class="navbar navbar-dark bg-dark fixed-top ">
-            <p id="unqHead-Title">UNQUIFLIX</p>
-            <input type="search" v-model="peli_find" placeholder="Buscar..">
-            <div class="div-select">
-                <select class="custom-select" v-model="peliculasearch" name="" id="">
-                    <option value="" disabled selected hidden>Elegir la categoria...</option>
-                    <option v-for="cate in categorias" :key="cate">
-                        {{cate}}
-                    </option>
-                    <option value="">TODAS</option>
-                </select>
+<!-- template for the modal component -->
+<script type="x/template" id="modal-template">
+    <transition name="modal">
+        <div class="modal-mask" v-show="show">
+			<nav id="barra-principal" class="navbar navbar-dark bg-dark fixed-top ">
+                    <p id="unqHead-Title">UNQUIFLIX</p>
+                    <input type="search" v-model="peli_find" placeholder="Buscar..">
+                    <div class="div-select">
+                        <select class="custom-select" v-model="peliculasearch" name="" id="">
+                            <option value="" disabled selected hidden>Elegir la categoria...</option>
+                            <option v-for="cate in categorias" :key="cate">
+                                {{cate}}
+                            </option>
+                            <option value="">TODAS</option>
+                        </select>
+					</div>
+            </nav>
+            <div class="modal-container">
+                <header>
+                    <h3>{{ pelicula.titulo }}</h3>
+                </header>
+                <main>
+                    <h2>{{ pelicula.actores }}</h2>
+                </main>
+                <footer>
+                    Save
+                </footer>
             </div>
-        </nav>
-        <div class="card" v-for="pelicula in peliculaFilterName" :key="pelicula.id" v-bind:class="[card-title, {noActiva:!pelicula.activa}]">
-
-			<!--Card image-->
-			<div class="container">
-				<img class="img-fluid image" :src="pelicula.linkPortada"  :alt="pelicula.titulo">
-				<div class="overlay">
-					<a :href="pelicula.link" class="icon" title="Play">
-					<i class="fa fa-play-circle"></i></a>
-					<span   v-on:click="togglePelicula(pelicula)" class="disabler" title="Activar / Desactivar">
-						<i class="fa fa-toggle-on"></i>
-					</span>	
-					<router-link class="btn btn-primary" to="/component2" title="Información">i</router-link>								
-				</div>
-			</div>
-			<!--Card content-->
-			<div class="card-body">
-				<!--Title-->
-				<h4 >{{ pelicula.titulo }}</h4>
-					<!--Text-->
-					<p class="card-text">{{ pelicula.actores }}</p>
-			</div>			
-		</div>
-    </div>
-</template>
-
+        </div>
+    </transition>
+</script>
 
 <script>
 import API from "../service/api";
@@ -64,7 +55,7 @@ export default {
   components: {
        "modal": modal,
   },
-  
+
   data() {
     return {
       peliculasearch: "",
@@ -98,9 +89,9 @@ export default {
                     )
                 .catch(e=>alert(e))
         },
-		
+
 		showModal() {
-		
+
 		},
     }};
 </script>
@@ -162,33 +153,4 @@ h4 {
 .fa-user:hover {
   color: #eee;
 }
-
-/*Item de menu activacion */
-.disabler {
-    color: white;
-    font-size: 40px;
-    position: absolute;
-    top: 20px;
-    right: 0px;
-    transform: translate(-50%, -50%);
-    -ms-transform: translate(-50%, -50%);
-    text-align: center;
-}
-.fa-toggle-on{
-    font-size: 30px!important;
-}
-.fa-toggle-on:hover{
-    cursor: pointer!important;
-}
-
-
-.div-search {
-    width: 500px !important;
-}
-    .noActiva{
-
-        background-color:red!important;
-    }
-
-
 </style>
