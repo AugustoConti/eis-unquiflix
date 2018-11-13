@@ -27,7 +27,8 @@
                 </select>
             </div>
             <div class="card-container">
-                <div class="card" v-for="pelicula in peliculasPorEstreno()" :key="pelicula.id">
+                <div class="card" v-for="pelicula in peliculasPorEstreno()" :key="pelicula.id"
+                     v-bind:class="[{noActiva:!pelicula.activa}]">
                     <div class="container">
                         <img class="img-fluid image" :src="pelicula.linkPortada" :alt="pelicula.titulo">
                         <div class="overlay">
@@ -146,22 +147,17 @@ export default {
         },
 
         peliculasPorCategoria(categoria) {
-            return this.peliculaFilterName.filter(
-                pelicula = > pelicula.categoria == categoria
+            return this.peliculaFilterName
+                .filter(pelicula = > pelicula.categoria == categoria
         )
             ;
         },
 
         peliculasPorEstreno() {
-            return this.peliculas.filter(pelicula = > {
-                console.log(subDays(new Date(), this.estreno));
-            console.log(moment(pelicula.estreno, "YYYY-MM-DD"));
-            return (
+            return this.peliculas.filter(pelicula = >
                 moment(pelicula.estreno, "YYYY-MM-DD") >=
                 subDays(new Date(), this.estreno)
             );
-        })
-            ;
         }
     }
 };
