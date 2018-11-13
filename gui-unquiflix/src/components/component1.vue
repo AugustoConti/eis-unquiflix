@@ -94,14 +94,12 @@ export default {
       );
     },
 
-      categoriaFiltered: function () {
-      return this.peliculaFilterName
-          .map(peli = > peli.categoria
-      )
-      .
-          filter(function (elem, pos, arr) {
-              return arr.indexOf(elem) == pos;
-          });
+    categoriaFiltered: function () {
+        return this.peliculaFilterName
+            .map(peli => peli.categoria)
+            .filter(function (elem, pos, arr) {
+                return arr.indexOf(elem) == pos;
+            });
     }
   },
 
@@ -116,47 +114,34 @@ export default {
     };
   },
 
-  created() {
-      this.leerPeliculas();
-
-    API.get("/categories")
-        .then(c = > (this.categorias = c)
-  )
-      .catch(e => alert(e));
-  },
+    created() {
+        this.leerPeliculas();
+        API.get("/categories")
+            .then(c => this.categorias = c)
+            .catch(e => alert(e));
+    },
 
     methods: {
         leerPeliculas() {
             API.get("")
-                .then(pelis = > (this.peliculas = pelis)
-        )
-        .
-            catch(e = > alert(e)
-        )
-            ;
+                .then(p => this.peliculas = p)
+                .catch(e => alert(e));
         },
 
         togglePelicula(pelicula) {
             API.get("/activacion/" + pelicula.id)
-                .then(() = > this.leerPeliculas()
-        )
-        .
-            catch(e = > alert(e)
-        )
-            ;
+                .then(() => this.leerPeliculas())
+                .catch(e => alert(e));
         },
 
         peliculasPorCategoria(categoria) {
             return this.peliculaFilterName
-                .filter(pelicula = > pelicula.categoria == categoria
-        )
-            ;
+                .filter(p => p.categoria == categoria);
         },
 
         peliculasPorEstreno() {
-            return this.peliculas.filter(pelicula = >
-                moment(pelicula.estreno, "YYYY-MM-DD") >=
-                subDays(new Date(), this.estreno)
+            return this.peliculas.filter(p =>
+                moment(p.estreno, "YYYY-MM-DD") >= subDays(new Date(), this.estreno)
             );
         }
     }
