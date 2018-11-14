@@ -7,7 +7,7 @@
 - [x] Agrupar vista de películas por categoría: **3**
 
 ## Estimación de tareas del siguiente sprint
-- Agregar una pelicula nueva **8**
+- Agregar una pelicula nueva **5**
 - Modificar una pelicula existente **5**
 
 ## Gráfico de velocidad
