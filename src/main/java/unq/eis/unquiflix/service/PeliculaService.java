@@ -25,48 +25,56 @@ public class PeliculaService {
     @EventListener
     public void appReady(ApplicationReadyEvent event) {
         peliRepository.save(new Pelicula("Volver al Futuro", Categoria.FICCION, LocalDate.of(1985, 7, 3),
+                "Descripción",
                 "Robert Zemeckis",
                 "Michael J. Fox, Christopher Lloyd, Crispin Glover, Lea Thompson",
                 "https://www.youtube.com/watch?v=qvsgGtivCgs",
                 "https://m.media-amazon.com/images/M/MV5BZmU0M2Y1OGUtZjIxNi00ZjBkLTg1MjgtOWIyNThiZWIwYjRiXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_SY1000_CR0,0,643,1000_AL_.jpg"));
 
         peliRepository.save(new Pelicula("Volver al Futuro II", Categoria.FICCION, LocalDate.of(1989, 12, 25),
+                "Un adolescente y un inventor extravagante viajan al pasado y al futuro para alterar una serie de eventos desastrosos.",
                 "Robert Zemeckis",
                 "Michael J. Fox, Christopher Lloyd, Crispin Glover, Lea Thompson",
                 "https://www.youtube.com/watch?v=MdENmefJRpw",
                 "https://m.media-amazon.com/images/M/MV5BZTMxMGM5MjItNDJhNy00MWI2LWJlZWMtOWFhMjI5ZTQwMWM3XkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_.jpg"));
 
         peliRepository.save(new Pelicula("Volver al Futuro III", Categoria.FICCION, LocalDate.of(1990, 8, 17),
+                "El último capítulo de esta trilogía, donde Marty McFly y Doc Brown se enfrentan a pistoleros en el viejo Oeste.",
                 "Robert Zemeckis",
                 "Michael J. Fox, Christopher Lloyd, Crispin Glover, Lea Thompson",
                 "https://www.youtube.com/watch?v=3C8c3EoEfw4",
                 "https://m.media-amazon.com/images/M/MV5BYjhlMGYxNmMtOWFmMi00Y2M2LWE5NWYtZTdlMDRlMGEzMDA3XkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_SY1000_CR0,0,676,1000_AL_.jpg"));
 
         peliRepository.save(new Pelicula("El señor de los anillos: La comunidad del anillo", Categoria.DRAMA, LocalDate.of(2002, 1, 31),
+                "Basada en la primer historia épica de J.R.R. Tolkien, sobre la búsqueda para poseer o destruir todo el poder del Anillo.",
                 "Peter Jackson",
                 "Elijah Wood, Ian McKellen, Orlando Bloom, Viggo Mortensen",
                 "https://www.youtube.com/watch?v=V75dMMIW2B4",
                 "https://m.media-amazon.com/images/M/MV5BN2EyZjM3NzUtNWUzMi00MTgxLWI0NTctMzY4M2VlOTdjZWRiXkEyXkFqcGdeQXVyNDUzOTQ5MjY@._V1_SY999_CR0,0,673,999_AL_.jpg"));
 
         peliRepository.save(new Pelicula("El señor de los anillos: Las dos torres", Categoria.DRAMA, LocalDate.of(2003, 1, 2),
+                "Gollum guía a Frodo y Sam a Mordor mientras Aragorn y sus compañeros defienden a Rohan del bestial ejército de Saruman.",
                 "Peter Jackson",
                 "Elijah Wood, Ian McKellen, Orlando Bloom, Viggo Mortensen",
                 "https://www.youtube.com/watch?v=LbfMDwc4azU",
                 "https://m.media-amazon.com/images/M/MV5BMDY0NmI4ZjctN2VhZS00YzExLTkyZGItMTJhOTU5NTg4MDU4XkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_.jpg"));
 
         peliRepository.save(new Pelicula("El señor de los anillos: El retorno del rey", Categoria.DRAMA, LocalDate.of(2003, 1, 2),
+                "El viaje de La Comunidad del Anillo está llegando a su fin.",
                 "Peter Jackson",
                 "Elijah Wood, Ian McKellen, Orlando Bloom, Viggo Mortensen",
                 "https://www.youtube.com/watch?v=r5X-hFf6Bwo",
                 "https://m.media-amazon.com/images/M/MV5BNzA5ZDNlZWMtM2NhNS00NDJjLTk4NDItYTRmY2EwMWZlMTY3XkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_SY1000_CR0,0,675,1000_AL_.jpg"));
 
         peliRepository.save(new Pelicula("Pulp Fiction", Categoria.ACCION, LocalDate.of(1995, 2, 16),
+                "Quentin Tarantino se enfoca en un grupo de violentos personajes en esta historia sobre la vida criminal.",
                 "Quentin Tarantino",
                 "John Travolta, Uma Thurman, Samuel L. Jackson",
                 "https://www.youtube.com/watch?v=s7EdQ4FqbhY",
                 "https://m.media-amazon.com/images/M/MV5BNGNhMDIzZTUtNTBlZi00MTRlLWFjM2ItYzViMjE3YzI5MjljXkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_SY1000_CR0,0,686,1000_AL_.jpg"));
 
         peliRepository.save(new Pelicula("Deadpool", Categoria.COMEDIA, LocalDate.of(2016, 2, 11),
+                "Un ex mercenario quien, tras haber sido sometido a un cruel experimento adquiere el súper poder de sanar rápidamente, pretende vengarse del hombre que destrozó su vida.",
                 "Tim Miller",
                 " Ryan Reynolds, Morena Baccarin, T.J. Miller",
                 "https://www.youtube.com/watch?v=0JnRdfiUMa8",

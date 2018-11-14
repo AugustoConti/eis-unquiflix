@@ -14,7 +14,6 @@
             </div>
         </nav>
         <div class="card" v-for="pelicula in peliculaFilterName" :key="pelicula.id" v-bind:class="[card-title, {noActiva:!pelicula.activa}]">
-
 			<!--Card image-->
 			<div class="container">
 				<img class="img-fluid image" :src="pelicula.linkPortada"  :alt="pelicula.titulo">
@@ -23,8 +22,8 @@
 					<i class="fa fa-play-circle"></i></a>
 					<span   v-on:click="togglePelicula(pelicula)" class="disabler" title="Activar / Desactivar">
 						<i class="fa fa-toggle-on"></i>
-					</span>	
-					<router-link class="btn btn-primary" to="/component2" title="Información">i</router-link>								
+					</span>
+					<router-link class="btn btn-info" :to="{ name: 'component2', params: {pelicula: pelicula}}">Descripción</router-link>
 				</div>
 			</div>
 			<!--Card content-->
@@ -41,7 +40,6 @@
 
 <script>
 import API from "../service/api";
-import modal from 'vue-js-modal'
 
 export default {
   computed: {
@@ -62,11 +60,11 @@ export default {
 
   name: "component1",
   components: {
-       "modal": modal,
   },
   
   data() {
     return {
+      peliculaSelected: "",
       peliculasearch: "",
       peliculas: [],
       categorias: [],
@@ -98,10 +96,6 @@ export default {
                     )
                 .catch(e=>alert(e))
         },
-		
-		showModal() {
-		
-		},
     }};
 </script>
 

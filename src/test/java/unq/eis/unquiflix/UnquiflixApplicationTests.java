@@ -30,6 +30,7 @@ public class UnquiflixApplicationTests {
         assertEquals("Volver al Futuro", vaf.getTitulo());
         assertEquals(Categoria.FICCION, vaf.getCategoria());
         assertTrue(vaf.getEstreno().isEqual(LocalDate.of(1985, 7, 3)));
+        assertEquals("Descripción", vaf.getDescripcion());
         assertEquals("Robert Zemeckis", vaf.getDirectores());
         assertEquals("Michael J. Fox, Christopher Lloyd, Crispin Glover, Lea Thompson", vaf.getActores());
         assertEquals("https://www.youtube.com/watch?v=qvsgGtivCgs", vaf.getLink());
