@@ -3,19 +3,26 @@
         <nav id="barra-principal" class="navbar navbar-dark bg-dark fixed-top">
             <p id="unqHead-Title">UNQUIFLIX</p>
         </nav>
-        <div v-model="pelicula">
-			    <h2><b>{{ pelicula.titulo }}</b></h2>
-	            <img class="img-fluid" :src="pelicula.linkPortada"  :alt="pelicula.titulo">
-				<h4>{{ pelicula.actores }}</h4>
-                <h5>{{ pelicula.descripcion }}</h5>
-				<router-link class="btn btn-success" to="/component1">Volver</router-link>
+        <div>
+            <div class="row">
+                <div class="col-4">
+                    <img class="w-100 p-3" :src="pelicula.linkPortada"  :alt="pelicula.titulo">
+                </div>
+                <div class="col-8">
+                    <h2><b>{{ pelicula.titulo }}</b></h2>
+                    <h4>Descripción: {{ pelicula.descripcion }}</h4>
+                    <h5>Categoría: {{ pelicula.categoria }}</h5>
+                    <h5>Directores: {{ pelicula.directores }}</h5>
+                    <h5>Actores: {{ pelicula.actores }}</h5>
+                    <h5>Fecha de estreno: {{ pelicula.estreno }}</h5>
+                    <router-link class="btn btn-success" to="/component1">Volver</router-link>
+                </div>
+            </div>
 		</div>
     </div>
 </template>
 
 <script>
-import API from "../service/api";
-
 export default {
 
   name: "component2",
