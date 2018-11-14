@@ -30,6 +30,8 @@ public class UnquiflixApplicationTests {
         assertEquals("Volver al Futuro", vaf.getTitulo());
         assertEquals(Categoria.FICCION, vaf.getCategoria());
         assertTrue(vaf.getEstreno().isEqual(LocalDate.of(1985, 7, 3)));
+        assertEquals("Marty McFly, un estudiante de secundaria de 17 años, es enviado accidentalmente treinta años al pasado en un DeLorean que viaja en el tiempo inventado por su amigo cercano, el científico disidente Doc Brown.",
+                vaf.getDescripcion());
         assertEquals("Robert Zemeckis", vaf.getDirectores());
         assertEquals("Michael J. Fox, Christopher Lloyd, Crispin Glover, Lea Thompson", vaf.getActores());
         assertEquals("https://www.youtube.com/watch?v=qvsgGtivCgs", vaf.getLink());

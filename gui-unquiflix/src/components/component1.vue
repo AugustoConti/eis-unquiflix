@@ -38,6 +38,7 @@
                             <span v-on:click="togglePelicula(pelicula)" class="disabler" title="Activar / Desactivar">
                                 <i :class="[ pelicula.activa ? 'fa fa-eye' : 'fa fa-eye-slash']"></i>
                             </span>
+                            <router-link class="btn btn-info" :to="{ name: 'component2', params: {pelicula: pelicula}}">Descripción</router-link>
                         </div>
                     </div>
                     <div class="card-body">
@@ -61,6 +62,7 @@
                             <span v-on:click="togglePelicula(pelicula)" class="disabler">
                                 <i :class="[ pelicula.activa ? 'fa fa-eye' : 'fa fa-eye-slash']"></i>
                             </span>
+                            <router-link class="btn btn-info" :to="{ name: 'component2', params: {pelicula: pelicula}}">Descripción</router-link>
                         </div>
                     </div>
                     <div class="card-body">
@@ -104,8 +106,12 @@ export default {
   },
 
   name: "component1",
+  components: {
+  },
+
   data() {
     return {
+      peliculaSelected: "",
       peliculasearch: "",
       peliculas: [],
       categorias: [],

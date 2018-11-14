@@ -16,6 +16,7 @@ public class Pelicula {
     private Categoria categoria;
 
     private LocalDate estreno;
+    private String descripcion;
     private String directores;
     private String actores;
     private String link;
@@ -25,11 +26,12 @@ public class Pelicula {
     protected Pelicula() {
     }
 
-    public Pelicula(String titulo, Categoria categoria, LocalDate estreno, String directores,
+    public Pelicula(String titulo, Categoria categoria, LocalDate estreno, String descripcion, String directores,
                     String actores, String link, String linkPortada) {
         this.titulo = titulo;
         this.categoria = categoria;
         this.estreno = estreno;
+        this.descripcion = descripcion;
         this.directores = directores;
         this.actores = actores;
         this.link = link;
@@ -49,6 +51,10 @@ public class Pelicula {
 
     public LocalDate getEstreno() {
         return estreno;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
     }
 
     public String getDirectores() {
