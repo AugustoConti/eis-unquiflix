@@ -5,9 +5,9 @@
 - [x] Activacion / Desactivacion de Peliculas **3**
 
 ## Estimación de tareas del siguiente sprint
-- Ver estrenos recientemente publicados **5**
-- Ver descripción de película en pantalla completa **3**
-- Agrupar vista de películas por categoría al seleccionar "todas" **3**
+- Ver estrenos del último periodo (3 días, semana, mes) **5**
+- Ver ficha de película **3**
+- Agrupar vista de películas por categoría **3**
 
 ## Gráfico de velocidad
 ![sprints](sprint3.png?raw=true "Velocidad en Sprints")
