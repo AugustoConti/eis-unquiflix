@@ -44,6 +44,11 @@
                     <div class="card-body">
                         <h4>{{ pelicula.titulo }}</h4>
                         <p class="card-text">{{ pelicula.actores }}</p>
+                        <p class="card-text ">
+                            <i id="a" class="fa fa-star" style="font-size:30px!important;" v-for="i in parseInt(pelicula.puntuacion)" :key="i"></i>
+                            <i id="a" class="fa fa-star-half-full" style="font-size:30px!important;" v-for="i in puntajeDecimal(pelicula.puntuacion)" :key="i"></i>
+                            ({{pelicula.puntuacion.toFixed(1)}})
+                        </p>
                     </div>
                 </div>
             </div>
@@ -68,7 +73,13 @@
                     <div class="card-body">
                         <h4>{{ pelicula.titulo }}</h4>
                         <p class="card-text">{{ pelicula.actores }}</p>
+                        <p class="card-text ">
+                            <i id="a" class="fa fa-star" style="font-size:30px!important;" v-for="i in parseInt(pelicula.puntuacion)" :key="i"></i>
+                            <i id="a" class="fa fa-star-half-full" style="font-size:30px!important;" v-for="i in puntajeDecimal(pelicula.puntuacion)" :key="i"></i>
+                            ({{pelicula.puntuacion.toFixed(1)}})
+                        </p>
                     </div>
+
                 </div>
             </div>
         </div>
@@ -128,6 +139,11 @@ export default {
     },
 
     methods: {
+
+        puntajeDecimal: function(valor){
+            return Math.round(valor%1);
+        },
+
         leerPeliculas() {
             API.get("")
                 .then(p => this.peliculas = p)
@@ -162,54 +178,58 @@ export default {
 ul li {
   color: white;
 }
-.card-deck {
-  background-color: red;
+
+.card-container {
+    clear: left;
+    margin-left:1.5em;
+
 }
+
 .card {
-  padding-top: 1em;
-  width: 20%;
-  float: left;
-  margin: 1em 1em 0 0;
-  min-height: 20em;
+    padding-top: 1em;
+    width: 20%;
+    float: left;
+    margin: 1em 1em 0 0;
+    min-height:42em;
 }
 h4 {
-  font-size: 1.4em;
+    font-size: 1.4em;
 }
 
 /* The overlay effect (full height and width) - lays on top of the container and over the image */
 .overlay {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 100%;
-  width: 100%;
-  opacity: 0;
-  transition: 0.3s ease;
-  background-color: rgba(0, 0, 0, 0.5);
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    transition: 0.3s ease;
+    background-color: rgba(0, 0, 0, 0.5);
 }
 
 /* When you mouse over the container, fade in the overlay icon*/
 .container:hover .overlay {
-  opacity: 1;
+    opacity: 1;
 }
 
 /* The icon inside the overlay is positioned in the middle vertically and horizontally */
 .icon {
-  color: white;
-  font-size: 100px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  text-align: center;
+    color: white;
+    font-size: 100px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    text-align: center;
 }
 
 /* When you move the mouse over the icon, change color */
 .fa-user:hover {
-  color: #eee;
+    color: #eee;
 }
 
 /*Item de menu activacion */
@@ -248,9 +268,8 @@ h4 {
     font-weight: bold;
     height: 10px;
     line-height: 10px;
+    margin-left:1em;
     padding-top: 50px;
-}
-.card-container {
-    clear: left;
+    padding-bottom: 10px;
 }
 </style>

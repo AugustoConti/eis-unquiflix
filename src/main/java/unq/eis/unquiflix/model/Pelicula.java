@@ -2,6 +2,7 @@ package unq.eis.unquiflix.model;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 @Entity
 public class Pelicula {
@@ -22,6 +23,7 @@ public class Pelicula {
     private String link;
     private String linkPortada;
     private Boolean activa;
+    private ArrayList<Integer> puntuacion= new ArrayList<Integer>();
 
     protected Pelicula() {
     }
@@ -37,6 +39,14 @@ public class Pelicula {
         this.link = link;
         this.linkPortada = linkPortada;
         this.activa = true;
+
+        //se removera cuando el usuario final pueda poner puntuacion
+        this.puntuacion.add(1);
+        this.puntuacion.add(2);
+        this.puntuacion.add(3);
+        this.puntuacion.add(5);
+        this.puntuacion.add(5);
+
     }
 
     public Integer getID(){
@@ -80,4 +90,6 @@ public class Pelicula {
     public void setActiva(Boolean value) {
         activa = value;
     }
+
+    public Double getPuntuacion() { return (Double) (puntuacion.stream().mapToDouble(i -> i).sum()) / puntuacion.size();}
 }
