@@ -64,4 +64,10 @@ public class UnquiflixApplicationTests {
     public void todasLasCategorias() {
         assertEquals(Arrays.asList(Categoria.values()), peliService.getAllCategories());
     }
+
+    @Test
+    public void dadaUnaPeliculaConUnaPuntuacionPidoLaPuntuacionDeLaPeliculaYcoincideConLaMisma() {
+
+        assertEquals(new Double(3.2), peliService.getPelicula(1).getPuntuacion() );
+    }
 }
