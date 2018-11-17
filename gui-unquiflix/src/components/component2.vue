@@ -24,20 +24,18 @@
 
 <script>
 export default {
+    name: "component2",
+    components: {},
 
-  name: "component2",
-  components: {
-  },
-
-  data() {
-    return {
-      pelicula: {}
-    };
-  },
-        created() {
-            this.pelicula = this.$route.params.pelicula;
-        },
-    };
+    data() {
+        return {
+            pelicula: {}
+        };
+    },
+    created() {
+        this.pelicula = this.$route.params.pelicula;
+    },
+};
 </script>
 
 <style scoped>
