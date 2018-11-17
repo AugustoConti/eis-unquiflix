@@ -63,9 +63,17 @@ public class UnquiflixApplicationTests {
     }
 
     @Test
-    public void descativoPelicula() {
+    public void desactivoPelicula() {
         peliService.cambiarActivacion(1);
         assertFalse(peliService.getPelicula(1).getActiva());
+    }
+
+    @Test
+    public void desactivoYVuelvoAActivarPelicula() {
+        peliService.cambiarActivacion(2);
+        assertFalse(peliService.getPelicula(2).getActiva());
+        peliService.cambiarActivacion(2);
+        assertTrue(peliService.getPelicula(2).getActiva());
     }
 
     @Test
