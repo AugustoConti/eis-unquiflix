@@ -75,7 +75,8 @@ public class PeliculaService {
     @GetMapping(value = "/activacion/{id}")
     public void cambiarActivacion(@PathVariable Integer id) {
         Pelicula peli = getPeli(id);
-        peli.setActiva(!peli.getActiva());
+        boolean activa = peli.getActiva();
+        peli.setActiva(!activa);
         peliRepository.save(peli);
     }
 
