@@ -3,7 +3,10 @@ package unq.eis.unquiflix.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RestController;
 import unq.eis.unquiflix.model.Categoria;
 import unq.eis.unquiflix.model.Pelicula;
 import unq.eis.unquiflix.repository.PeliculaRepository;
@@ -25,7 +28,7 @@ public class PeliculaService {
 
     @EventListener
     public void appReady(ApplicationReadyEvent event) {
-        peliRepository.save(new Pelicula("Volver al Futuro", Categoria.FICCION, LocalDate.of(1985, 7, 3), "Marty McFly, un estudiante de secundaria de 17 años, es enviado accidentalmente treinta años al pasado en un DeLorean que viaja en el tiempo inventado por su amigo cercano, el científico disidente Doc Brown.", "Robert Zemeckis", "Michael J. Fox, Christopher Lloyd, Crispin Glover, Lea Thompson", "https://www.youtube.com/watch?v=qvsgGtivCgs", "https://m.media-amazon.com/images/M/MV5BZmU0M2Y1OGUtZjIxNi00ZjBkLTg1MjgtOWIyNThiZWIwYjRiXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_SY1000_CR0,0,643,1000_AL_.jpg",Arrays.asList(4)));
+        peliRepository.save(new Pelicula("Volver al Futuro", Categoria.FICCION, LocalDate.of(1985, 7, 3), "Marty McFly, un estudiante de secundaria de 17 años, es enviado accidentalmente treinta años al pasado en un DeLorean que viaja en el tiempo inventado por su amigo cercano, el científico disidente Doc Brown.", "Robert Zemeckis", "Michael J. Fox, Christopher Lloyd, Crispin Glover, Lea Thompson", "https://www.youtube.com/watch?v=qvsgGtivCgs", "https://m.media-amazon.com/images/M/MV5BZmU0M2Y1OGUtZjIxNi00ZjBkLTg1MjgtOWIyNThiZWIwYjRiXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_SY1000_CR0,0,643,1000_AL_.jpg", Collections.singletonList(4)));
 
         peliRepository.save(new Pelicula("Volver al Futuro II", Categoria.FICCION, LocalDate.of(1989, 12, 25), "Un adolescente y un inventor extravagante viajan al pasado y al futuro para alterar una serie de eventos desastrosos.", "Robert Zemeckis", "Michael J. Fox, Christopher Lloyd, Crispin Glover, Lea Thompson", "https://www.youtube.com/watch?v=MdENmefJRpw", "https://m.media-amazon.com/images/M/MV5BZTMxMGM5MjItNDJhNy00MWI2LWJlZWMtOWFhMjI5ZTQwMWM3XkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_.jpg", Collections.emptyList()));
 
@@ -50,9 +53,13 @@ public class PeliculaService {
         peliRepository.save(new Pelicula("Animales Fantásticos: Los crímenes de Grindelwald", Categoria.FICCION, LocalDate.of(2018, 11, 1), "La segunda entrega de la serie \"Fantastic Beasts\" ambientada en J.K. El mundo mágico de Rowling con las aventuras del magizoólogo Newt Scamander.", "David Yates", "Eddie Redmayne, Katherine Waterston, Dan Fogler", "https://www.youtube.com/watch?v=liHMfhux9M4", "https://m.media-amazon.com/images/M/MV5BMjAxMjM3NjAzM15BMl5BanBnXkFtZTgwNDQxNjA1NjM@._V1_SY1000_CR0,0,674,1000_AL_.jpg",Arrays.asList(1,1,1)));
     }
 
+    private Pelicula getPeli(Integer id) {
+        return peliRepository.findById(id).orElseThrow(() -> new PeliculaInexistenteException(id));
+    }
+
     @GetMapping(value = "/{id}")
     public Pelicula getPelicula(@PathVariable Integer id) {
-        return peliRepository.findById(id).get();
+        return getPeli(id);
     }
 
     @GetMapping(value = "/find/{title}")
@@ -67,7 +74,7 @@ public class PeliculaService {
 
     @GetMapping(value = "/activacion/{id}")
     public void cambiarActivacion(@PathVariable Integer id) {
-        Pelicula peli = peliRepository.findById(id).get();
+        Pelicula peli = getPeli(id);
         peli.setActiva(!peli.getActiva());
         peliRepository.save(peli);
     }
