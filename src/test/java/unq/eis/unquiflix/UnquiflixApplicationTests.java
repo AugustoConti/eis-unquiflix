@@ -1,5 +1,6 @@
 package unq.eis.unquiflix;
 
+import org.assertj.core.util.Lists;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +8,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import unq.eis.unquiflix.model.Categoria;
 import unq.eis.unquiflix.model.Pelicula;
+import unq.eis.unquiflix.service.PeliculaInexistenteException;
 import unq.eis.unquiflix.service.PeliculaService;
 
 import java.time.LocalDate;
@@ -25,7 +27,7 @@ public class UnquiflixApplicationTests {
     public void contextLoads() {
     }
 
-    private void assertVolverAlFuturo(Pelicula vaf){
+    private void assertVolverAlFuturo(Pelicula vaf) {
         assertEquals(Integer.valueOf(1), vaf.getID());
         assertEquals("Volver al Futuro", vaf.getTitulo());
         assertEquals(Categoria.FICCION, vaf.getCategoria());
@@ -37,6 +39,7 @@ public class UnquiflixApplicationTests {
         assertEquals("https://www.youtube.com/watch?v=qvsgGtivCgs", vaf.getLink());
         assertEquals("https://m.media-amazon.com/images/M/MV5BZmU0M2Y1OGUtZjIxNi00ZjBkLTg1MjgtOWIyNThiZWIwYjRiXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_SY1000_CR0,0,643,1000_AL_.jpg",
                 vaf.getLinkPortada());
+        assertEquals(new Double(4), vaf.getPuntuacion());
     }
 
     @Test
@@ -49,19 +52,42 @@ public class UnquiflixApplicationTests {
         assertVolverAlFuturo(peliService.getPelicula(1));
     }
 
+    @Test(expected = PeliculaInexistenteException.class)
+    public void getPeliculaInexistenteByID() {
+        peliService.getPelicula(-1);
+    }
+
     @Test
     public void peliculaInicializaActivada() {
         assertTrue(peliService.getPelicula(1).getActiva());
     }
 
     @Test
-    public void descativoPelicula() {
+    public void desactivoPelicula() {
         peliService.cambiarActivacion(1);
         assertFalse(peliService.getPelicula(1).getActiva());
     }
 
     @Test
+    public void desactivoYVuelvoAActivarPelicula() {
+        peliService.cambiarActivacion(2);
+        assertFalse(peliService.getPelicula(2).getActiva());
+        peliService.cambiarActivacion(2);
+        assertTrue(peliService.getPelicula(2).getActiva());
+    }
+
+    @Test
     public void todasLasCategorias() {
         assertEquals(Arrays.asList(Categoria.values()), peliService.getAllCategories());
+    }
+
+    @Test
+    public void peliculasPorCategoria() {
+        assertEquals(1, Lists.newArrayList(peliService.getPeliculasByCategory("COMEDIA")).size());
+    }
+
+    @Test
+    public void allPeliculas() {
+        assertEquals(12, Lists.newArrayList(peliService.getAllPeliculas()).size());
     }
 }

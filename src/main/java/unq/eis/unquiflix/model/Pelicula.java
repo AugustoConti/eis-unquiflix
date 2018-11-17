@@ -2,6 +2,7 @@ package unq.eis.unquiflix.model;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 public class Pelicula {
@@ -23,11 +24,14 @@ public class Pelicula {
     private String linkPortada;
     private Boolean activa;
 
+    @ElementCollection(targetClass = Integer.class, fetch = FetchType.EAGER)
+    private List<Integer> puntuacion;
+
     protected Pelicula() {
     }
 
     public Pelicula(String titulo, Categoria categoria, LocalDate estreno, String descripcion, String directores,
-                    String actores, String link, String linkPortada) {
+                    String actores, String link, String linkPortada, List<Integer> puntuacion) {
         this.titulo = titulo;
         this.categoria = categoria;
         this.estreno = estreno;
@@ -37,9 +41,10 @@ public class Pelicula {
         this.link = link;
         this.linkPortada = linkPortada;
         this.activa = true;
+        this.puntuacion = puntuacion;
     }
 
-    public Integer getID(){
+    public Integer getID() {
         return id;
     }
 
@@ -47,7 +52,9 @@ public class Pelicula {
         return titulo;
     }
 
-    public Categoria getCategoria() { return this.categoria; }
+    public Categoria getCategoria() {
+        return this.categoria;
+    }
 
     public LocalDate getEstreno() {
         return estreno;
@@ -78,6 +85,10 @@ public class Pelicula {
     }
 
     public void setActiva(Boolean value) {
-        activa = value;
+        this.activa = value;
+    }
+
+    public Double getPuntuacion() {
+        return puntuacion.stream().mapToDouble(i -> i).average().orElse(0);
     }
 }
