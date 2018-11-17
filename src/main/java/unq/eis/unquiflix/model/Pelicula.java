@@ -85,7 +85,7 @@ public class Pelicula {
     }
 
     public void setActiva(Boolean value) {
-        activa = value;
+        this.activa = value;
     }
 
     public Double getPuntuacion() {
