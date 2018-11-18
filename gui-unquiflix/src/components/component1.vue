@@ -13,6 +13,9 @@
                 </select>
             </div>
         </nav>
+        <div class="float-right mr-4">
+          <router-link class="btn btn-success m-0 pl-2 pr-2 pt-0 pb-0" :to="{ name: 'pelicula'}"><h1>+</h1></router-link>
+        </div>
         <div v-if="!peli_find && !peliculasearch">
             <h3 class="text-white d-inline-block mr-3">Estrenos de los últimos: </h3>
             <div class="div-select d-inline-block">
@@ -85,8 +88,8 @@ export default {
       peliculasearch: "",
       peliculas: [],
       categorias: [],
-        peli_find: "",
-        estreno: 3
+      peli_find: "",
+      estreno: 3
     };
   },
 

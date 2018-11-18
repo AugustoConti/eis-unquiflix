@@ -88,7 +88,7 @@ public class Pelicula {
         this.activa = value;
     }
 
-    public Double getPuntuacion() {
-        return puntuacion.stream().mapToDouble(i -> i).average().orElse(0);
+    public List<Integer> getPuntuacion() {
+        return puntuacion;
     }
 }

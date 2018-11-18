@@ -3,10 +3,7 @@ package unq.eis.unquiflix.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import unq.eis.unquiflix.model.Categoria;
 import unq.eis.unquiflix.model.Pelicula;
 import unq.eis.unquiflix.repository.PeliculaRepository;
@@ -53,6 +50,10 @@ public class PeliculaService {
         peliRepository.save(new Pelicula("Animales Fantásticos: Los crímenes de Grindelwald", Categoria.FICCION, LocalDate.of(2018, 11, 1), "La segunda entrega de la serie \"Fantastic Beasts\" ambientada en J.K. El mundo mágico de Rowling con las aventuras del magizoólogo Newt Scamander.", "David Yates", "Eddie Redmayne, Katherine Waterston, Dan Fogler", "https://www.youtube.com/watch?v=liHMfhux9M4", "https://m.media-amazon.com/images/M/MV5BMjAxMjM3NjAzM15BMl5BanBnXkFtZTgwNDQxNjA1NjM@._V1_SY1000_CR0,0,674,1000_AL_.jpg",Arrays.asList(1,1,1)));
     }
 
+    public void delete(Integer id) {
+        peliRepository.deleteById(id);
+    }
+
     private Pelicula getPeli(Integer id) {
         return peliRepository.findById(id).orElseThrow(() -> new PeliculaInexistenteException(id));
     }
@@ -87,5 +88,11 @@ public class PeliculaService {
     @GetMapping("/")
     public Iterable<Pelicula> getAllPeliculas() {
         return peliRepository.findAll();
+    }
+
+    @PostMapping("/pelicula")
+    @PutMapping("/pelicula")
+    public void savePelicula(@RequestBody Pelicula peli) {
+        peliRepository.save(peli);
     }
 }
