@@ -13,6 +13,7 @@ import unq.eis.unquiflix.service.PeliculaService;
 
 import java.time.LocalDate;
 import java.util.Arrays;
+import java.util.Collections;
 
 import static org.junit.Assert.*;
 
@@ -39,7 +40,7 @@ public class UnquiflixApplicationTests {
         assertEquals("https://www.youtube.com/watch?v=qvsgGtivCgs", vaf.getLink());
         assertEquals("https://m.media-amazon.com/images/M/MV5BZmU0M2Y1OGUtZjIxNi00ZjBkLTg1MjgtOWIyNThiZWIwYjRiXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_SY1000_CR0,0,643,1000_AL_.jpg",
                 vaf.getLinkPortada());
-        assertEquals(new Double(4), vaf.getPuntuacion());
+        assertEquals(1, vaf.getPuntuacion().size());
     }
 
     @Test
@@ -89,5 +90,20 @@ public class UnquiflixApplicationTests {
     @Test
     public void allPeliculas() {
         assertEquals(12, Lists.newArrayList(peliService.getAllPeliculas()).size());
+    }
+
+    @Test
+    public void savePelicula() {
+        Pelicula nueva = new Pelicula("prueba", Categoria.FICCION, LocalDate.now(),
+                "desc", "director", "actor",
+                "link", "portada", Collections.emptyList());
+        peliService.savePelicula(nueva);
+        Pelicula peli = peliService.getPeliculaByTitle("prueba");
+        assertEquals(Categoria.FICCION, peli.getCategoria());
+        assertEquals("desc", peli.getDescripcion());
+        assertEquals("director", peli.getDirectores());
+        assertEquals("link", peli.getLink());
+        assertEquals("portada", peli.getLinkPortada());
+        peliService.delete(nueva.getID());
     }
 }

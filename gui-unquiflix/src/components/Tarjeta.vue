@@ -9,16 +9,21 @@
                 <span @click="togglePelicula" class="disabler">
                     <i :class="[ peli.activa ? 'fa fa-eye' : 'fa fa-eye-slash']"></i>
                 </span>
-                <router-link class="btn btn-info" :to="{ name: 'component2', params: {pelicula: peli}}">Descripción</router-link>
+                <router-link class="btn btn-info pl-4 pr-4 pb-1" :to="{ name: 'component2', params: {pelicula: peli}}">
+                    <h3><span class="oi oi-info"></span></h3>
+                </router-link>
+                <router-link class="btn btn-success pl-3 pr-3 pb-1" :to="{ name: 'pelicula', params: {pelicula: peli}}">
+                    <h3><span class="oi oi-pencil"></span></h3>
+                </router-link>
             </div>
         </div>
         <div class="card-body">
             <h4>{{ peli.titulo }}</h4>
-            <p class="card-text">{{ peli.actores }}</p>
+            <p class="card-text">{{ peli.descripcion.substring(0, 75)}}...</p>
             <p class="card-text ">
-                <i id="a" class="fa fa-star" style="font-size:30px!important;" v-for="i in parseInt(peli.puntuacion)" :key="i"></i>
-                <i id="a" class="fa fa-star-half-full" style="font-size:30px!important;" v-for="i in puntajeDecimal()" :key="i"></i>
-                ({{peli.puntuacion.toFixed(1)}})
+                <i class="fa fa-star" style="font-size:30px!important;" v-for="i in parseInt(puntaje())" :key="i"></i>
+                <i class="fa fa-star-half-full" style="font-size:30px!important;" v-for="i in puntajeDecimal()" :key="i"></i>
+                ({{puntaje().toFixed(1)}})
             </p>
         </div>
     </div>
@@ -29,7 +34,9 @@ import API from "../service/api";
 
 export default {
   props: {
-    peli: {},
+    peli: {
+        puntaje: []
+    },
     onToggle: {
       type: Function,
       required: true
@@ -37,8 +44,18 @@ export default {
   },
 
   methods: {
+    puntaje(){
+        if(this.peli.puntuacion.length == 0)
+            return 0;
+        var total = 0, length = this.peli.puntuacion.length;
+        for (var i = 0; i < length; i++) {
+            total += parseFloat(this.peli.puntuacion[i]);
+        }
+        return total / length;
+    },
+
     puntajeDecimal(){
-        return Math.round(this.peli.puntuacion%1);
+        return Math.round(this.puntaje()%1);
     },
     togglePelicula: function(){
         API.get("/activacion/" + this.peli.id)
