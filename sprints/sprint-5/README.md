@@ -4,6 +4,7 @@
 
 - [x] Agregar una pelicula nueva **5**
 - [x] Modificar una pelicula existente **5**
+- [x] Ver Rating de pelicula **2**
 
 
 ## Estimación de tareas del siguiente sprint
