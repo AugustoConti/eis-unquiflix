@@ -8,8 +8,9 @@
 
 
 ## Estimación de tareas del siguiente sprint
-- Como ADMINISTRADOR quiero loguearme en la app con mi username **5**
-- Cómo USUARIO quiero loguearme **1**
+
+- Como ADMINISTRADOR quiero loguearme en la app con mi username **3**
+- Cómo USUARIO quiero loguearme **3**
 - Cómo USUARIO quiero poder puntuar una pelicula **3**
 - Cómo ADMINISTRADOR quiero ver un ranking de películas por puntuacion **3**
 
@@ -27,5 +28,5 @@
 
 
 ### Low
-- Falta de disponibilidad de algunos integrantes impidio que podamos colaborar entre nosotros como en el sprint pasado
-- Realizar las retrospectivas no nos genera valor.
+- Falta de disponibilidad de algunos integrantes impidio que podamos colaborar entre nosotros como en el sprint pasado.
+- No pudimos reunirnos personalmente.
