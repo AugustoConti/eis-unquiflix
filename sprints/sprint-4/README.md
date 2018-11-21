@@ -9,6 +9,7 @@
 ## Estimación de tareas del siguiente sprint
 - Agregar una pelicula nueva **5**
 - Modificar una pelicula existente **5**
+- Ver Rating de pelicula **2**
 
 ## Gráfico de velocidad
 
