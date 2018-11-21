@@ -11,7 +11,7 @@
 
 ## Gráfico de velocidad
 
-![](sprint5.png?raw=true "Velocidad en Sprints")
+![](sprint-5.png?raw=true "Velocidad en Sprints")
 
 ## Retrospectiva
 
