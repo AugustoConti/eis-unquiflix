@@ -89,12 +89,14 @@ export default {
       peliculas: [],
       categorias: [],
       peli_find: "",
+      loggedUser: {},
       estreno: 3
     };
   },
 
     created() {
         this.leerPeliculas();
+        this.loggedUser = this.$route.params.loggedUser;
         API.get("/categories")
             .then(c => this.categorias = c)
             .catch(e => alert(e));

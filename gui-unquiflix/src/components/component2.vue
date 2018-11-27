@@ -32,6 +32,7 @@ export default {
             pelicula: {}
         };
     },
+
     created() {
         this.pelicula = this.$route.params.pelicula;
     },

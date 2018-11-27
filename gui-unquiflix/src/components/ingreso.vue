@@ -5,7 +5,7 @@
         <nav id="barra-principal" class="navbar navbar-dark bg-dark sticky-top">
             <p id="unqHead-Title">UNQUIFLIX </p>
         
-            <router-link class="btn btn-primary btn-rounded" to="/component1"  >Ingresar</router-link>
+            <router-link class="btn btn-primary btn-rounded" to="/login"  >Ingresar</router-link>
         <!-- <button type="button" class="btn btn-default btn-rounded">Default</button> -->
         <!-- <button type="button" class="btn btn-outline-default btn-rounded waves-effect">Default</button> -->
         
