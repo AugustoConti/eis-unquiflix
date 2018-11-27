@@ -8,8 +8,11 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import unq.eis.unquiflix.model.Categoria;
 import unq.eis.unquiflix.model.Pelicula;
+import unq.eis.unquiflix.model.Usuario;
 import unq.eis.unquiflix.service.PeliculaInexistenteException;
 import unq.eis.unquiflix.service.PeliculaService;
+import unq.eis.unquiflix.service.UsuarioInexistenteException;
+import unq.eis.unquiflix.service.UsuarioService;
 
 import java.time.LocalDate;
 import java.util.Arrays;
@@ -23,6 +26,10 @@ public class UnquiflixApplicationTests {
 
     @Autowired
     private PeliculaService peliService;
+
+    @Autowired
+    private UsuarioService userService;
+
 
     @Test
     public void contextLoads() {
@@ -105,5 +112,22 @@ public class UnquiflixApplicationTests {
         assertEquals("link", peli.getLink());
         assertEquals("portada", peli.getLinkPortada());
         peliService.delete(nueva.getID());
+    }
+
+    private void assertUsuarioQuique(Usuario usuarioQuique) {
+        assertEquals("Enrique Alonso", usuarioQuique.getNombre());
+        assertTrue(usuarioQuique.getEsAdmin());
+
+
+    }
+
+    @Test
+    public void getUsuarioQuique() {
+        assertUsuarioQuique(userService.getUsuario("quique"));
+    }
+
+    @Test(expected = UsuarioInexistenteException.class)
+    public void getUsuarioInexistente() {
+        userService.getUsuario("rodolfo");
     }
 }
