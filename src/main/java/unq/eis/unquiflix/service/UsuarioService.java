@@ -3,7 +3,10 @@ package unq.eis.unquiflix.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RestController;
 import unq.eis.unquiflix.model.Usuario;
 import unq.eis.unquiflix.repository.UsuarioRepository;
 
@@ -21,7 +24,7 @@ public class UsuarioService {
 
     @EventListener
     public void appReady(ApplicationReadyEvent event) {
-       usuarioRepository.save(new Usuario("quique", "Enrique Alonso", true));
+        usuarioRepository.save(new Usuario("quique", "Enrique Alonso", true));
         usuarioRepository.save(new Usuario("augusto", "Augusto Conti", false));
         usuarioRepository.save(new Usuario("facu", "Facundo ", true));
         usuarioRepository.save(new Usuario("tincho", "Martin Kopececk", false));
@@ -29,8 +32,7 @@ public class UsuarioService {
     }
 
     private Usuario getUser(String loginName) {
-            return usuarioRepository.findByLoginName(loginName).orElseThrow(() -> new UsuarioInexistenteException(loginName));
-
+        return usuarioRepository.findByLoginName(loginName).orElseThrow(() -> new UsuarioInexistenteException(loginName));
     }
 
     @GetMapping(value = "/loginName/{loginName}")

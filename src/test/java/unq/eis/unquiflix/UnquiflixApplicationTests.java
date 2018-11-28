@@ -30,7 +30,6 @@ public class UnquiflixApplicationTests {
     @Autowired
     private UsuarioService userService;
 
-
     @Test
     public void contextLoads() {
     }
@@ -114,16 +113,19 @@ public class UnquiflixApplicationTests {
         peliService.delete(nueva.getID());
     }
 
-    private void assertUsuarioQuique(Usuario usuarioQuique) {
-        assertEquals("Enrique Alonso", usuarioQuique.getNombre());
-        assertTrue(usuarioQuique.getEsAdmin());
-
-
+    private void assertUsuario(Usuario usuario, String nombre, boolean esAdmin) {
+        assertEquals(nombre, usuario.getNombre());
+        assertEquals(esAdmin, usuario.getEsAdmin());
     }
 
     @Test
-    public void getUsuarioQuique() {
-        assertUsuarioQuique(userService.getUsuario("quique"));
+    public void getUsuarioAdmin() {
+        assertUsuario(userService.getUsuario("quique"), "Enrique Alonso", true);
+    }
+
+    @Test
+    public void getUsuarioComun() {
+        assertUsuario(userService.getUsuario("augusto"), "Augusto Conti", false);
     }
 
     @Test(expected = UsuarioInexistenteException.class)

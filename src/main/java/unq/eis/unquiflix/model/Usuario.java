@@ -5,7 +5,6 @@ import javax.persistence.*;
 @Entity
 public class Usuario {
 
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -13,21 +12,25 @@ public class Usuario {
     @Column(unique = true)
     private String loginName;
 
-    private Boolean esAdmin=false;
+    private Boolean esAdmin;
     private String fullName;
 
 
     protected Usuario() {
     }
-    public Usuario(String loginName, String fullName, Boolean esAdmin){
-        this.esAdmin=esAdmin;
+
+    public Usuario(String loginName, String fullName, Boolean esAdmin) {
+        this.esAdmin = esAdmin;
         this.fullName = fullName;
-        this.loginName=loginName;
+        this.loginName = loginName;
     }
 
-    public Boolean getEsAdmin(){
+    public Boolean getEsAdmin() {
         return esAdmin;
     }
-    public String getNombre() {return fullName;}
+
+    public String getNombre() {
+        return fullName;
+    }
 
 }
