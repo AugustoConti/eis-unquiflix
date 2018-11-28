@@ -2,17 +2,17 @@
     <div class="card" v-bind:class="[{noActiva:!peli.activa}]">
         <div class="container" >
             <img class="img-fluid image" :src="peli.linkPortada" :alt="peli.titulo">
-            <div class="overlay" v-if="$parent.loggedUser.esAdmin">
+            <div class="overlay">
                 <a :href="peli.link" class="icon">
                     <i class="fa fa-play-circle"></i>
                 </a>
-                <span @click="togglePelicula" class="disabler">
+                <span @click="togglePelicula" class="disabler" v-if="$parent.loggedUser.esAdmin">
                     <i :class="[ peli.activa ? 'fa fa-eye' : 'fa fa-eye-slash']"></i>
                 </span>
                 <router-link class="btn btn-info pl-4 pr-4 pb-1" :to="{ name: 'component2', params: {pelicula: peli, loggedUser: loggedUser}}">
                     <h3><span class="oi oi-info"></span></h3>
                 </router-link>
-                <router-link class="btn btn-success pl-3 pr-3 pb-1" :to="{ name: 'pelicula', params: {pelicula: peli, loggedUser: loggedUser}}">
+                <router-link v-if="$parent.loggedUser.esAdmin" class="btn btn-success pl-3 pr-3 pb-1" :to="{ name: 'pelicula', params: {pelicula: peli, loggedUser: loggedUser}}">
                     <h3><span class="oi oi-pencil"></span></h3>
                 </router-link>
             </div>
@@ -41,7 +41,9 @@ export default {
       type: Function,
       required: true
     },
-    loggedUser: {}
+    loggedUser: {
+        esAdmin: false
+    }
   },
 
   methods: {
