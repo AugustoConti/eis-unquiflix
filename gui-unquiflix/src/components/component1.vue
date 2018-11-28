@@ -2,6 +2,7 @@
     <div class="container-fluid" id="component1">
         <nav id="barra-principal" class="navbar navbar-dark bg-dark fixed-top ">
             <h2 class="text-white" id="unqHead-Title">UNQUIFLIX</h2>
+            <h3 class="text-warning" v-if="loggedUser.esAdmin">ADMIN</h3>
             <h3 style="color:red!important;">{{loggedUser.nombre}}</h3>
             <input type="search" v-model="peli_find" placeholder="Buscar..">
             <div class="div-select">
