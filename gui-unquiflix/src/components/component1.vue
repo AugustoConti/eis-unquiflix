@@ -1,8 +1,8 @@
 <template>
     <div class="container-fluid" id="component1">
         <nav id="barra-principal" class="navbar navbar-dark bg-dark fixed-top ">
-            <p id="unqHead-Title">UNQUIFLIX</p>
-            <p style="color:red!important;">{{loggedUser}}</p>
+            <p id="unqHead-Title" style="color:white;">UNQUIFLIX</p>
+            <p style="color:red!important;">{{loggedUser.nombre}}</p>
             <input type="search" v-model="peli_find" placeholder="Buscar..">
             <div class="div-select">
                 <select class="custom-select" v-model="peliculasearch" name="" id="">
@@ -15,7 +15,7 @@
             </div>
         </nav>
         <div class="float-right mr-4">
-          <router-link class="btn btn-success m-0 pl-2 pr-2 pt-0 pb-0" :to="{ name: 'pelicula'}"><h1>+</h1></router-link>
+          <router-link class="btn btn-success m-0 pl-2 pr-2 pt-0 pb-0" :to="{ name: 'pelicula'}" v-if="loggedUser.esAdmin"><h1>+</h1></router-link>
         </div>
         <div v-if="!peli_find && !peliculasearch">
             <h3 class="text-white d-inline-block mr-3">Estrenos de los últimos: </h3>
