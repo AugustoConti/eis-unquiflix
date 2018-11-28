@@ -2,9 +2,10 @@
 
 ## Tareas comprometidas:
 
-- [x] Agregar una pelicula nueva **5**
-- [x] Modificar una pelicula existente **5**
-- [x] er Rating de pelicula **2**
+- Como ADMINISTRADOR quiero loguearme en la app con mi username **3**
+- Cómo USUARIO quiero loguearme **3**
+- Cómo USUARIO quiero poder puntuar una pelicula **3**
+- Cómo ADMINISTRADOR quiero ver un ranking de películas por puntuacion **3**
 
 ## Gráfico de velocidad
 
