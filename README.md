@@ -26,3 +26,4 @@ Augusto Conti    | augustoconti10@gmail.com
 - [Sprint 3](./sprints/sprint-3/README.md)
 - [Sprint 4](./sprints/sprint-4/README.md)
 - [Sprint 5](./sprints/sprint-5/README.md)
+- [Sprint 6](./sprints/sprint-6/README.md)
