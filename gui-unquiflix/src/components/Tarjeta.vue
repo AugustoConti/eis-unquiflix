@@ -9,10 +9,10 @@
                 <span @click="togglePelicula" class="disabler">
                     <i :class="[ peli.activa ? 'fa fa-eye' : 'fa fa-eye-slash']"></i>
                 </span>
-                <router-link class="btn btn-info pl-4 pr-4 pb-1" :to="{ name: 'component2', params: {pelicula: peli}}">
+                <router-link class="btn btn-info pl-4 pr-4 pb-1" :to="{ name: 'component2', params: {pelicula: peli, loggedUser: loggedUser}}">
                     <h3><span class="oi oi-info"></span></h3>
                 </router-link>
-                <router-link class="btn btn-success pl-3 pr-3 pb-1" :to="{ name: 'pelicula', params: {pelicula: peli}}">
+                <router-link class="btn btn-success pl-3 pr-3 pb-1" :to="{ name: 'pelicula', params: {pelicula: peli, loggedUser: loggedUser}}">
                     <h3><span class="oi oi-pencil"></span></h3>
                 </router-link>
             </div>
@@ -40,7 +40,8 @@ export default {
     onToggle: {
       type: Function,
       required: true
-    }
+    },
+    loggedUser: {}
   },
 
   methods: {
