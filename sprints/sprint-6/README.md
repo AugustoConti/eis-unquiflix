@@ -19,4 +19,4 @@
 ### Low
 - Mala division de tareas
 - Falta de disponibilidad de algunos integrantes
-- No pudimos cumplir una de las tareas compremetidas
+- No pudimos cumplir una de las tareas comprometidas
