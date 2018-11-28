@@ -1,9 +1,9 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 // import Home from './views/Home.vue'
-import ingreso from '@/components/ingreso.vue'
 import component1 from '@/components/component1.vue'
 import component2 from '@/components/component2.vue'
+import login from '@/components/login.vue'
 import Pelicula from '@/components/Pelicula.vue'
 
 Vue.use(Router)
@@ -27,8 +27,8 @@ export default new Router({
     },
     {
       path: '/',
-      name: 'ingreso',
-      component: ingreso
+      name: 'login',
+      component: login
     }
    // {
     //  path: '/about',

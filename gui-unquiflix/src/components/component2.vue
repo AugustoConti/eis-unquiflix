@@ -2,6 +2,7 @@
     <div class="container-fluid" id="component2">
         <nav id="barra-principal" class="navbar navbar-dark bg-dark fixed-top">
             <p id="unqHead-Title">UNQUIFLIX</p>
+
         </nav>
         <div>
             <div class="row">
@@ -15,7 +16,7 @@
                     <h5>Directores: {{ pelicula.directores }}</h5>
                     <h5>Actores: {{ pelicula.actores }}</h5>
                     <h5>Fecha de estreno: {{ pelicula.estreno }}</h5>
-                    <router-link class="btn btn-success" to="/component1">Volver</router-link>
+                    <router-link class="btn btn-success" :to="{ name: 'component1', params: {loggedUser: loggedUser}}">Volver</router-link>
                 </div>
             </div>
 		</div>
@@ -29,9 +30,11 @@ export default {
 
     data() {
         return {
-            pelicula: {}
+            pelicula: {},
+            loggedUser: {}
         };
     },
+
     created() {
         this.pelicula = this.$route.params.pelicula;
     },

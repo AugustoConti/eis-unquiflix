@@ -23,7 +23,7 @@
   }
 
   body {
-    background: url("../src/assets/logobackChicoNegro.png") no-repeat center center fixed black !important;
+    background: url("../src/assets/background-main.png");
     background-color:black;
   }
 

@@ -47,7 +47,7 @@
           </div>
         </div>
         <div class="btn-group float-right" role="group">
-          <router-link class="btn btn-secondary" to="/component1">Cancelar</router-link>
+          <router-link class="btn btn-secondary" :to="{name: 'component1', params: {loggedUser: loggedUser}}">Cancelar</router-link>
           <button class="btn btn-primary" v-on:click="send">Aceptar</button>
         </div>
     </div>
@@ -75,6 +75,7 @@ export default {
 
   data() {
     return {
+      loggedUser: {},
       peli: this.pelicula,
       defaultImage: 'https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg',
       isNew: true,
@@ -90,7 +91,7 @@ export default {
   methods: {
     send: function () {
       API.post('/pelicula', { ...this.peli })
-      .then(() => this.$router.push('component1'))
+      .then(() => this.$router.push({name: 'component1', params: {loggedUser: this.loggedUser}}))
       .catch(alert);
     }
   }
