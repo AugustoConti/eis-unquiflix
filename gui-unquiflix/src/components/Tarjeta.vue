@@ -15,6 +15,11 @@
                 <router-link v-if="$parent.loggedUser.esAdmin" class="btn btn-success pl-3 pr-3 pb-1" :to="{ name: 'pelicula', params: {pelicula: peli, loggedUser: loggedUser}}">
                     <h3><span class="oi oi-pencil"></span></h3>
                 </router-link>
+                <div v-if="!$parent.loggedUser.esAdmin">
+                    <i class="fa fa-star estrella es-elegida"  v-for="i in parseInt(puntaje())" :key="i" v-on:click="puntuar(i)"></i>
+
+                    <i class="fa fa-star estrella es-vacia" v-for="i in (5-parseInt(puntaje()))" :key="i" v-on:click="puntuar(i+puntaje())"></i>
+                </div>
             </div>
         </div>
         <div class="card-body">
@@ -35,6 +40,9 @@
 import API from "../service/api";
 
 export default {
+    created() {
+        this.loggedUser = this.$route.params.loggedUser;
+    },
   props: {
     peli: {
         puntaje: []
@@ -50,7 +58,6 @@ export default {
 
   methods: {
       puntuar:function(valor){
-
           API.put("/puntuar/"+this.peli.id+"/"+valor)
               .then(this.$parent.leerPeliculas())
                 .catch(e => alert(e));

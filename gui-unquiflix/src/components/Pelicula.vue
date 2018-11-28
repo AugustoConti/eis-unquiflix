@@ -70,7 +70,8 @@ export default {
             linkPortada: "",//String
             activa: true,//Boolean
             puntuacion: [],
-        };
+        };  
+        this.loggedUser = this.$route.params.loggedUser;
   },
 
   data() {

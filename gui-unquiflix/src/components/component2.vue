@@ -1,9 +1,5 @@
 <template>
     <div class="container-fluid" id="component2">
-        <nav id="barra-principal" class="navbar navbar-dark bg-dark fixed-top">
-            <p id="unqHead-Title">UNQUIFLIX</p>
-
-        </nav>
         <div>
             <div class="row">
                 <div class="col-4">
@@ -37,6 +33,7 @@ export default {
 
     created() {
         this.pelicula = this.$route.params.pelicula;
+        this.loggedUser = this.$route.params.loggedUser;
     },
 };
 </script>
