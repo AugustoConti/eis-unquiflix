@@ -8,7 +8,7 @@
 
 ## Gráfico de velocidad
 
-![](sprint6.png?raw=true "Velocidad en Sprints")
+![](sprint-6.png?raw=true "Velocidad en Sprints")
 
 ## Retrospectiva
 
