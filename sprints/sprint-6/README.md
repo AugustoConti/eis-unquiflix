@@ -2,10 +2,10 @@
 
 ## Tareas comprometidas:
 
-- Como ADMINISTRADOR quiero loguearme en la app con mi username **3**
-- Cómo USUARIO quiero loguearme **3**
-- Cómo USUARIO quiero poder puntuar una pelicula **3**
-- Cómo ADMINISTRADOR quiero ver un ranking de películas por puntuacion **3**
+- [x] Como ADMINISTRADOR quiero loguearme en la app con mi username **3**
+- [x] Cómo USUARIO quiero loguearme **3**
+- [x] Cómo USUARIO quiero poder puntuar una pelicula **3**
+- [ ] Cómo ADMINISTRADOR quiero ver un ranking de películas por puntuacion **3**
 
 ## Gráfico de velocidad
 
