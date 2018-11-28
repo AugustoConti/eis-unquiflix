@@ -91,4 +91,6 @@ public class Pelicula {
     public List<Integer> getPuntuacion() {
         return puntuacion;
     }
+
+    public void addPuntaje (Integer puntaje){this.puntuacion.add (puntaje);    }
 }

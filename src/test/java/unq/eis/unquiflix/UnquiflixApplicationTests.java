@@ -17,6 +17,7 @@ import unq.eis.unquiflix.service.UsuarioService;
 import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 
 import static org.junit.Assert.*;
 
@@ -132,4 +133,14 @@ public class UnquiflixApplicationTests {
     public void getUsuarioInexistente() {
         userService.getUsuario("rodolfo");
     }
+
+    @Test
+    public void agregoUnaPuntuacionAUnaPeliculaYObtengoDosPuntuaciones(){
+        Pelicula peli = peliService.getPeliculaByTitle("Volver al Futuro");
+        peliService.puntuarPelicula(peli.getID(),5);
+        assertEquals(2, peliService.getPelicula(peli.getID()).getPuntuacion().size());
+    }
+
+
+
 }
