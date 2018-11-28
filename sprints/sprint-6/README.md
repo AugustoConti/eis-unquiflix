@@ -14,9 +14,9 @@
 ## Retrospectiva
 
 ### High
-- Se llego a cumplir varios objetivos
+- Ensayar la demo antes de la presentación
 
 ### Low
 - Mala division de tareas
 - Falta de disponibilidad de algunos integrantes
-- No llegamos a cumplir las tareas compremetidas
+- No pudimos cumplir una de las tareas compremetidas
