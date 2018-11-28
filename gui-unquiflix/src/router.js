@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 // import Home from './views/Home.vue'
-import ingreso from '@/components/ingreso.vue'
 import component1 from '@/components/component1.vue'
 import component2 from '@/components/component2.vue'
 import login from '@/components/login.vue'
@@ -17,11 +16,6 @@ export default new Router({
       component: component1
     },
     {
-      path: '/login',
-      name: 'login',
-      component: login
-     },
-    {
       path: '/component2',
       name: 'component2',
       component: component2
@@ -33,8 +27,8 @@ export default new Router({
     },
     {
       path: '/',
-      name: 'ingreso',
-      component: ingreso
+      name: 'login',
+      component: login
     }
    // {
     //  path: '/about',
