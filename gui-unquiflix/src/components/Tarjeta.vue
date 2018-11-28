@@ -1,8 +1,8 @@
 <template>
     <div class="card" v-bind:class="[{noActiva:!peli.activa}]">
-        <div class="container">
+        <div class="container" >
             <img class="img-fluid image" :src="peli.linkPortada" :alt="peli.titulo">
-            <div class="overlay">
+            <div class="overlay" v-if="$parent.loggedUser.esAdmin">
                 <a :href="peli.link" class="icon">
                     <i class="fa fa-play-circle"></i>
                 </a>
