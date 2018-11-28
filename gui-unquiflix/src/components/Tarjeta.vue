@@ -21,8 +21,10 @@
             <h4>{{ peli.titulo }}</h4>
             <p class="card-text">{{ peli.descripcion.substring(0, 75)}}...</p>
             <p class="card-text ">
-                <i class="fa fa-star" style="font-size:30px!important;" v-for="i in parseInt(puntaje())" :key="i"></i>
-                <i class="fa fa-star-half-full" style="font-size:30px!important;" v-for="i in puntajeDecimal()" :key="i"></i>
+                <i class="fa fa-star estrella es-elegida"  v-for="i in parseInt(puntaje())" :key="i" v-on:click="puntuar(i)"></i>
+
+                <i class="fa fa-star estrella es-vacia" v-for="i in (5-parseInt(puntaje()))" :key="i" v-on:click="puntuar(i+puntaje())"></i>
+
                 ({{puntaje().toFixed(1)}})
             </p>
         </div>
@@ -47,6 +49,12 @@ export default {
   },
 
   methods: {
+      puntuar:function(valor){
+
+          API.put("/puntuar/"+this.peli.id+"/"+valor)
+              .then(this.$parent.leerPeliculas())
+                .catch(e => alert(e));
+      },
     puntaje(){
         if(this.peli.puntuacion.length == 0)
             return 0;
@@ -54,7 +62,7 @@ export default {
         for (var i = 0; i < length; i++) {
             total += parseFloat(this.peli.puntuacion[i]);
         }
-        return total / length;
+        return Math.round(total / length);
     },
 
     puntajeDecimal(){
@@ -139,5 +147,28 @@ export default {
 
     .noActiva {
         background-color: rgb(112, 0, 0) !important;
+    }
+
+    .estrella{
+        font-size:30px!important;
+    }
+    .estrella:hover{
+        color:yellow;
+
+    }
+    .es-vacia{
+        color:#e3ecfc;
+    }
+    .es-elegida{
+        color:#5d95f7;
+    }
+
+    /* prev siblings should be red */
+    .card-text:hover i {
+        color: #5d95f7;
+    }
+
+    .card-text i:hover ~ i {
+        color: #e3ecfc;
     }
 </style>

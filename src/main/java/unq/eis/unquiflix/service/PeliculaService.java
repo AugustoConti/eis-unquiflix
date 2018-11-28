@@ -84,4 +84,12 @@ public class PeliculaService {
     public void savePelicula(@RequestBody Pelicula peli) {
         peliRepository.save(peli);
     }
+
+
+    @PutMapping("/puntuar/{id}/{puntaje}")
+    public void puntuarPelicula(@PathVariable("id") Integer id,@PathVariable("puntaje") Integer puntaje) {
+        Pelicula peli = getPeli(id);
+        peli.addPuntaje(puntaje);
+        peliRepository.save(peli);
+    }
 }
