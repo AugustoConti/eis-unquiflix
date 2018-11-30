@@ -17,9 +17,10 @@ import unq.eis.unquiflix.service.UsuarioService;
 import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.List;
+
 
 import static org.junit.Assert.*;
+
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -121,17 +122,17 @@ public class UnquiflixApplicationTests {
 
     @Test
     public void getUsuarioAdmin() {
-        assertUsuario(userService.getUsuario("quique"), "Enrique Alonso", true);
+        assertUsuario(userService.getUsuario("quique","123"), "Enrique Alonso", true);
     }
 
     @Test
     public void getUsuarioComun() {
-        assertUsuario(userService.getUsuario("augusto"), "Augusto Conti", false);
+        assertUsuario(userService.getUsuario("augusto","456"), "Augusto Conti", false);
     }
 
     @Test(expected = UsuarioInexistenteException.class)
     public void getUsuarioInexistente() {
-        userService.getUsuario("rodolfo");
+        userService.getUsuario("rodolfo","");
     }
 
     @Test
@@ -140,7 +141,10 @@ public class UnquiflixApplicationTests {
         peliService.puntuarPelicula(peli.getID(),5);
         assertEquals(2, peliService.getPelicula(peli.getID()).getPuntuacion().size());
     }
-
+    @Test (expected = UsuarioInexistenteException.class)
+    public void verificoQueLaClaveDeUnUsuarioNoSeaCorrectaYArrojeUnaExcepcion(){
+        userService.getUsuario("quique","passwordErronea").validarPassword("123");
+    }
 
 
 }
