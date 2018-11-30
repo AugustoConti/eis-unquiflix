@@ -22,7 +22,7 @@ public class UsuarioService {
         this.usuarioRepository = usuarioRepository;
     }
 
-    @EventListener
+/*    @EventListener
     public void appReady(ApplicationReadyEvent event) {
         usuarioRepository.save(new Usuario("quique", "Enrique Alonso", true));
         usuarioRepository.save(new Usuario("augusto", "Augusto Conti", false));
@@ -30,7 +30,7 @@ public class UsuarioService {
         usuarioRepository.save(new Usuario("tincho", "Martin Kopececk", false));
         usuarioRepository.save(new Usuario("octa", "Octavio Gonzalez", true));
     }
-
+*/
     private Usuario getUser(String loginName) {
         return usuarioRepository.findByLoginName(loginName).orElseThrow(() -> new UsuarioInexistenteException(loginName));
     }
