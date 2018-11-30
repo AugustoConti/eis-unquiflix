@@ -16,7 +16,7 @@
             </div>
         </nav>
         <div class="float-right mr-4">
-          <router-link class="btn btn-success m-0 pl-2 pr-2 pt-0 pb-0" :to="{ name: 'pelicula', params: {loggedUser: loggedUser}}" v-if="loggedUser.esAdmin"><h1>+</h1></router-link>
+            <router-link class="btn btn-success m-0 pl-2 pr-2 pt-0 pb-0" :to="{ name: 'pelicula', params: {loggedUser: loggedUser}}" v-if="loggedUser.esAdmin"><h1>+</h1></router-link>
         </div>
         <div v-if="!peli_find && !peliculasearch">
             <h3 class="text-white d-inline-block mr-3">Estrenos de los últimos: </h3>
@@ -49,80 +49,86 @@
 </template>
 
 <script>
-import API from "../service/api";
-import {subDays} from "date-fns";
-import moment from "moment";
-import Tarjeta from './Tarjeta.vue'
+    import API from "../service/api";
+    import {subDays} from "date-fns";
+    import moment from "moment";
+    import Tarjeta from './Tarjeta.vue'
 
-export default {
-  computed: {
-    peliculaFilter: function() {
-      var peli = this.peliculasearch;
-      return this.peliculas.filter(
-        e => e.categoria.toLowerCase().indexOf(peli.toLowerCase()) !== -1
-      );
-    },
-
-    peliculaFilterName: function() {
-      var peliname = this.peli_find;
-      return this.peliculaFilter.filter(
-        e => e.titulo.toLowerCase().indexOf(peliname.toLowerCase()) !== -1
-      );
-    },
-
-    categoriaFiltered: function () {
-        return this.peliculaFilterName
-            .map(peli => peli.categoria)
-            .filter(function (elem, pos, arr) {
-                return arr.indexOf(elem) == pos;
-            });
-    }
-  },
-
-  name: "component1",
-  components: {
-    'tarjeta': Tarjeta
-  },
-
-  data() {
-    return {
-      peliculaSelected: "",
-      peliculasearch: "",
-      peliculas: [],
-      categorias: [],
-      peli_find: "",
-      loggedUser: {},
-      estreno: 3
-    };
-  },
-
-    created() {
-        this.leerPeliculas();
-        this.loggedUser = this.$route.params.loggedUser;
-        API.get("/categories")
-            .then(c => this.categorias = c)
-            .catch(e => alert(e));
-    },
-
-    methods: {
-        leerPeliculas() {
-            API.get("")
-                .then(p => this.peliculas = p)
-                .catch(e => alert(e));
-        },
-
-        peliculasPorCategoria(categoria) {
-            return this.peliculaFilterName
-                .filter(p => p.categoria == categoria);
-        },
-
-        peliculasPorEstreno() {
-            return this.peliculas.filter(p =>
-                moment(p.estreno, "YYYY-MM-DD") >= subDays(new Date(), this.estreno)
+    export default {
+        computed: {
+            peliculaFilter: function() {
+                var peli = this.peliculasearch;
+                return this.peliculas.filter(
+                    e => e.categoria.toLowerCase().indexOf(peli.toLowerCase()) !== -1
             );
+            },
+
+            peliculaFilterName: function() {
+                var peliname = this.peli_find;
+                return this.peliculaFilter.filter(
+                    e => e.titulo.toLowerCase().indexOf(peliname.toLowerCase()) !== -1
+            );
+            },
+
+            categoriaFiltered: function () {
+                return this.peliculaFilterName
+                    .map(peli => peli.categoria)
+            .filter(function (elem, pos, arr) {
+                    return arr.indexOf(elem) == pos;
+                });
+            }
+        },
+
+        name: "component1",
+        components: {
+            'tarjeta': Tarjeta
+        },
+
+        data() {
+            return {
+                peliculaSelected: "",
+                peliculasearch: "",
+                peliculas: [],
+                categorias: [],
+                peli_find: "",
+                loggedUser: {},
+                estreno: 3
+            };
+        },
+
+        created() {
+            this.leerPeliculas();
+            this.loggedUser = this.$route.params.loggedUser;
+            API.get("/categories")
+                .then(c => this.categorias = c)
+        .catch(e => alert(e));
+        },
+
+        methods: {
+            leerPeliculas() {
+                var self =this;
+                API.get("")
+                    .then(response => this.callBack(response))
+            .catch(e => alert(e));
+
+            },
+            callBack(r){
+                this.peliculas = r;
+
+            },
+
+            peliculasPorCategoria(categoria) {
+                return this.peliculaFilterName
+                    .filter(p => p.categoria == categoria);
+            },
+
+            peliculasPorEstreno() {
+                return this.peliculas.filter(p =>
+                    moment(p.estreno, "YYYY-MM-DD") >= subDays(new Date(), this.estreno)
+            );
+            }
         }
-    }
-};
+    };
 </script>
 
 <style scoped>
