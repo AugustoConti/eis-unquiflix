@@ -49,7 +49,13 @@
             }
         },
         created() {
-            this.loggedUser = this.$route.params.loggedUser;
+          //this.loggedUser = this.$route.params.loggedUser;
+          this.loggedUser = this.$session.get("unqf");
+        },
+        beforeCreate: function () {
+          if (!this.$session.exists()) {
+            this.$router.push('/')
+          }
         },
         props: {
             peli: {
@@ -91,11 +97,19 @@
                 setTimeout(function(){ self.loading=false; }, 1000);
                 console.log (this.peli.puntuacion)
             },
-
+            puntaje(){
+              if(this.peli.puntuacion.length == 0)
+                return 0;
+              var total = 0, length = this.peli.puntuacion.length;
+              for (var i = 0; i < length; i++) {
+                  total += parseFloat(this.peli.puntuacion[i]);
+              }
+              return Math.round(total / length);
+            },
             togglePelicula: function(){
                 API.get("/activacion/" + this.peli.id)
-                    .then(() => this.onToggle())
-            .catch(e => alert(e));
+                    .then(() => this.onToggle())   
+                    .catch(e => alert(e));
             }
         }
     }

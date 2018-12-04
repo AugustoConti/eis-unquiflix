@@ -2,8 +2,7 @@
     <div class="container-fluid" id="component1">
         <nav id="barra-principal" class="navbar navbar-dark bg-dark fixed-top ">
             <h2 class="text-white" id="unqHead-Title">UNQUIFLIX</h2>
-            <h3 class="text-warning" v-if="loggedUser.esAdmin">ADMIN</h3>
-            <h3 style="color:red!important;">{{loggedUser.nombre}}</h3>
+
             <input type="search" v-model="peli_find" placeholder="Buscar..">
             <div class="div-select">
                 <select class="custom-select" v-model="peliculasearch" name="" id="">
@@ -14,6 +13,9 @@
                     <option value="">TODAS</option>
                 </select>
             </div>
+            <h3 class="text-warning" v-if="loggedUser.esAdmin">ADMIN</h3>
+            <h3 style="color:red!important;">{{loggedUser.nombre}}</h3>
+            <button class="btn btn-danger" v-on:click="logOut()">Log out</button>
         </nav>
         <div class="float-right mr-4">
             <router-link class="btn btn-success m-0 pl-2 pr-2 pt-0 pb-0" :to="{ name: 'pelicula', params: {loggedUser: loggedUser}}" v-if="loggedUser.esAdmin"><h1>+</h1></router-link>
@@ -94,14 +96,21 @@
                 loggedUser: {},
                 estreno: 3
             };
+
         },
 
         created() {
             this.leerPeliculas();
-            this.loggedUser = this.$route.params.loggedUser;
+            this.loggedUser = this.$session.get("unqf");
             API.get("/categories")
                 .then(c => this.categorias = c)
-        .catch(e => alert(e));
+                .catch(e => alert(e));
+        },
+       beforeCreate: function () {
+            if (!this.$session.exists()) {
+                this.$router.push('/')
+            }
+
         },
 
         methods: {
@@ -109,14 +118,24 @@
                 var self =this;
                 API.get("")
                     .then(response => this.callBack(response))
-            .catch(e => alert(e));
-
+                    .catch(e => alert(e));
             },
+            
+            logOut:function(){
+                this.$session.destroy();
+                this.$router.push('/');
+            },
+
+            leerPeliculas() {
+                API.get("")
+                    .then(p => this.peliculas = p)
+                    .catch(e => alert(e));
+            },
+            
             callBack(r){
                 this.peliculas = r;
-
             },
-
+            
             peliculasPorCategoria(categoria) {
                 return this.peliculaFilterName
                     .filter(p => p.categoria == categoria);
@@ -125,7 +144,7 @@
             peliculasPorEstreno() {
                 return this.peliculas.filter(p =>
                     moment(p.estreno, "YYYY-MM-DD") >= subDays(new Date(), this.estreno)
-            );
+                );
             }
         }
     };

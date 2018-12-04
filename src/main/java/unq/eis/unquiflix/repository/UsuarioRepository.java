@@ -6,5 +6,5 @@ import unq.eis.unquiflix.model.Usuario;
 import java.util.Optional;
 
 public interface UsuarioRepository extends CrudRepository<Usuario, Integer> {
-    Optional<Usuario> findByLoginName(String loginName);
+    Optional<Usuario> findByLoginNameAndPassword(String loginName, String password);
 }
