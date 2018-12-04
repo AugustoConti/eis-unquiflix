@@ -20,6 +20,7 @@
 </template>
 
 <script>
+
 export default {
     name: "component2",
     components: {},
@@ -30,10 +31,15 @@ export default {
             loggedUser: {}
         };
     },
-
     created() {
         this.pelicula = this.$route.params.pelicula;
-        this.loggedUser = this.$route.params.loggedUser;
+        this.loggedUser = this.$session.get("unqf");
+    },
+    beforeCreate: function () {
+        if (!this.$session.exists()) {
+            this.$router.push('/')
+        }
+
     },
 };
 </script>

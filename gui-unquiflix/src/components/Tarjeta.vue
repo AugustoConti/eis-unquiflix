@@ -41,7 +41,14 @@ import API from "../service/api";
 
 export default {
     created() {
-        this.loggedUser = this.$route.params.loggedUser;
+        //this.loggedUser = this.$route.params.loggedUser;
+        this.loggedUser = this.$session.get("unqf");
+    },
+
+    beforeCreate: function () {
+        if (!this.$session.exists()) {
+            this.$router.push('/')
+        }
     },
   props: {
     peli: {
@@ -55,7 +62,6 @@ export default {
         esAdmin: false
     }
   },
-
   methods: {
       puntuar:function(valor){
           API.put("/puntuar/"+this.peli.id+"/"+valor)
@@ -70,10 +76,6 @@ export default {
             total += parseFloat(this.peli.puntuacion[i]);
         }
         return Math.round(total / length);
-    },
-
-    puntajeDecimal(){
-        return Math.round(this.puntaje()%1);
     },
     togglePelicula: function(){
         API.get("/activacion/" + this.peli.id)

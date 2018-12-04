@@ -71,7 +71,8 @@ export default {
             activa: true,//Boolean
             puntuacion: [],
         };  
-        this.loggedUser = this.$route.params.loggedUser;
+        //this.loggedUser = this.$route.params.loggedUser;
+        this.loggedUser = this.$session.get("unqf");
   },
 
   data() {
@@ -82,7 +83,12 @@ export default {
       isNew: true,
     };
   },
+  beforeCreate: function () {
+        if (!this.$session.exists()) {
+            this.$router.push('/')
+        }
 
+  },
   computed: {
     source() {
       return this.peli.linkPortada || this.defaultImage;

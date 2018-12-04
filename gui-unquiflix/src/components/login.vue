@@ -6,11 +6,18 @@
         <h1 class="text-danger text-center display-4 font-weight-bold">UNQUIFLIX</h1>
         <div class="login-button">
           <input
-            id="inputUser"
-            class="form-control"
-            placeholder="Usuario"
-            required
-            v-model="loginName"
+                  id="inputUser"
+                  class="form-control"
+                  placeholder="Usuario"
+                  required
+                  v-model="loginName"
+          />
+          <input type="password"
+                 id="inputPassword"
+                 class="form-control"
+                 placeholder="Password"
+                 required
+                 v-model="password"
           />
           <button class="form-control btn btn-danger" v-on:click="logear"><h3 class="m-0">Entrar</h3></button>
         </div>
@@ -21,25 +28,30 @@
 </template>
 
 <script>
-import API from "../service/api";
+    import API from "../service/api";
 
-export default {
-    name: "login",
-    components: {},
-    data() {
-        return {
-            loginName: "",
-            usuario: {}
-        };
-    },
-    methods: {
-        logear(){
-            API.get("/loginName/" + this.loginName)
-                .then(u => this.$router.push({name: 'component1', params: {loggedUser: u}}))
-                .catch(e => alert(e));
+    export default {
+        name: "login",
+        components: {},
+        data() {
+            return {
+                loginName: "",
+                password:"",
+                usuario: {}
+            };
+        },
+        methods: {
+            logear(){
+                API.post("/auth",{usuario: this.loginName, password: this.password})
+                    .then(response => {
+                      this.$session.start()
+                      this.$session.set('unqf', response)
+                      this.$router.push({name: 'component1', params: {loggedUser: response}})
+                    })
+                    .catch(e => alert(e.response.data.message));
+            }
         }
-    }
-};
+    };
 </script>
 
 <style scoped>
@@ -50,14 +62,14 @@ export default {
   }
 
   .form-signin {
-      width: 100%;
-      max-width: 330px;
-      padding: 15px;
-      margin: auto;
-      align-items: center;
-      border-radius:8px;
-      backdrop-filter: blur(5px);
-      background-color: rgba(0, 0, 0, 0.5); 
+    width: 100%;
+    max-width: 330px;
+    padding: 15px;
+    margin: auto;
+    align-items: center;
+    border-radius:8px;
+    backdrop-filter: blur(5px);
+    background-color: rgba(0, 0, 0, 0.5);
   }
 
   .blurred-bg-container .content {

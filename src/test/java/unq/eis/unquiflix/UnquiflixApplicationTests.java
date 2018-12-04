@@ -9,17 +9,15 @@ import org.springframework.test.context.junit4.SpringRunner;
 import unq.eis.unquiflix.model.Categoria;
 import unq.eis.unquiflix.model.Pelicula;
 import unq.eis.unquiflix.model.Usuario;
-import unq.eis.unquiflix.service.PeliculaInexistenteException;
-import unq.eis.unquiflix.service.PeliculaService;
-import unq.eis.unquiflix.service.UsuarioInexistenteException;
-import unq.eis.unquiflix.service.UsuarioService;
+import unq.eis.unquiflix.service.*;
 
 import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.List;
+
 
 import static org.junit.Assert.*;
+
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -121,17 +119,20 @@ public class UnquiflixApplicationTests {
 
     @Test
     public void getUsuarioAdmin() {
-        assertUsuario(userService.getUsuario("quique"), "Enrique Alonso", true);
+        UsuarioSimple u = new UsuarioSimple("quique", "123");
+        assertUsuario(userService.getUsuario(u), "Enrique Alonso", true);
     }
 
     @Test
     public void getUsuarioComun() {
-        assertUsuario(userService.getUsuario("augusto"), "Augusto Conti", false);
+        UsuarioSimple u = new UsuarioSimple("augusto", "456");
+        assertUsuario(userService.getUsuario(u), "Augusto Conti", false);
     }
 
-    @Test(expected = UsuarioInexistenteException.class)
+    @Test(expected = UsuarioIncorrectoException.class)
     public void getUsuarioInexistente() {
-        userService.getUsuario("rodolfo");
+        UsuarioSimple u = new UsuarioSimple("rodolfo", "123");
+        userService.getUsuario(u);
     }
 
     @Test
@@ -142,5 +143,23 @@ public class UnquiflixApplicationTests {
     }
 
 
+    @Test
+    //Testear usuario Simple
+    public void obtengoLaPasswordDeUnUsuarioYCoincideConLaCreada(){
+        UsuarioSimple user = new UsuarioSimple("quique","123");
+        assertEquals("123",user.getPassword());
+    }
+
+    @Test
+    public void obtengoElUsuarioDeUnUsuarioYCoincideConLaCreada(){
+        UsuarioSimple user = new UsuarioSimple("quique","123");
+        assertEquals("quique",user.getUsuario());
+    }
+
+    @Test
+    public void creoUnUsuarioSimpleYObtengoTalClase(){
+        UsuarioSimple u = new UsuarioSimple();
+        assertEquals(u.getClass(), UsuarioSimple.class);
+    }
 
 }

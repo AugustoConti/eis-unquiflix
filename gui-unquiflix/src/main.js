@@ -7,6 +7,8 @@ import 'mdbootstrap/scss/mdb.scss'
 import 'mdbootstrap/scss/style.scss'
 import 'open-iconic/font/css/open-iconic-bootstrap.min.css'
 import VModal from 'vue-js-modal'
+import VueSession from 'vue-session'
+Vue.use(VueSession)
 
 Vue.use(VModal)
 Vue.config.productionTip = false
