@@ -100,16 +100,17 @@
 
         created() {
             this.leerPeliculas();
-            this.loggedUser = this.$route.params.loggedUser;
+            this.loggedUser = this.$session.get("unqf");
             API.get("/categories")
                 .then(c => this.categorias = c)
-        .catch(e => alert(e));
+                .catch(e => alert(e));
         },
 
         beforeCreate: function () {
             if (!this.$session.exists()) {
                 this.$router.push('/')
             }
+
         },
 
         methods: {
@@ -121,7 +122,7 @@
             leerPeliculas() {
                 API.get("")
                     .then(p => this.peliculas = p)
-            .catch(e => alert(e));
+                    .catch(e => alert(e));
             },
 
             peliculasPorCategoria(categoria) {

@@ -11,7 +11,7 @@ import unq.eis.unquiflix.model.Pelicula;
 import unq.eis.unquiflix.model.Usuario;
 import unq.eis.unquiflix.service.PeliculaInexistenteException;
 import unq.eis.unquiflix.service.PeliculaService;
-import unq.eis.unquiflix.service.UsuarioInexistenteException;
+import unq.eis.unquiflix.service.UsuarioIncorrectoException;
 import unq.eis.unquiflix.service.UsuarioService;
 
 import java.time.LocalDate;
@@ -130,7 +130,7 @@ public class UnquiflixApplicationTests {
         assertUsuario(userService.getUsuario("augusto","456"), "Augusto Conti", false);
     }
 
-    @Test(expected = UsuarioInexistenteException.class)
+    @Test(expected = UsuarioIncorrectoException.class)
     public void getUsuarioInexistente() {
         userService.getUsuario("rodolfo","");
     }
@@ -141,7 +141,7 @@ public class UnquiflixApplicationTests {
         peliService.puntuarPelicula(peli.getID(),5);
         assertEquals(2, peliService.getPelicula(peli.getID()).getPuntuacion().size());
     }
-    @Test (expected = UsuarioInexistenteException.class)
+    @Test (expected = UsuarioIncorrectoException.class)
     public void verificoQueLaClaveDeUnUsuarioNoSeaCorrectaYArrojeUnaExcepcion(){
         userService.getUsuario("quique","passwordErronea").validarPassword("123");
     }

@@ -1,6 +1,6 @@
 package unq.eis.unquiflix.model;
 
-import unq.eis.unquiflix.service.UsuarioInexistenteException;
+import unq.eis.unquiflix.service.UsuarioIncorrectoException;
 
 import javax.persistence.*;
 
@@ -39,7 +39,7 @@ public class Usuario {
 
     public void validarPassword(String password){
         if (!this.password.equals(password)){
-            throw new UsuarioInexistenteException(this.loginName);
+            throw new UsuarioIncorrectoException(this.loginName);
         }
 
     }

@@ -1,14 +1,9 @@
 package unq.eis.unquiflix.service;
 
-import jdk.jfr.events.ExceptionThrownEvent;
-import org.aspectj.util.LangUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import unq.eis.unquiflix.model.Usuario;
 import unq.eis.unquiflix.repository.UsuarioRepository;
 
@@ -33,17 +28,15 @@ public class UsuarioService {
         usuarioRepository.save(new Usuario("octa", "Octavio Gonzalez", true,"111"));
     }
 
-    private Usuario getUser(String loginName) {
-        return usuarioRepository.findByLoginName(loginName).orElseThrow(() -> new UsuarioInexistenteException(loginName));
+    private Usuario getUser(String loginName, String pass) {
+        return usuarioRepository.findByLoginNameAndPassword(loginName, pass).orElseThrow(() -> new UsuarioIncorrectoException(loginName));
 
     }
 
-
-    @GetMapping(value = "/loginName/{loginName}/{password}")
-    public Usuario getUsuario(@PathVariable String loginName, @PathVariable String password) {
-        Usuario user = getUser(loginName);
-        user.validarPassword(password);
-        return user;
+    @PostMapping(value = "auth")
+    public Usuario getUsuario(@RequestBody UsuarioSimple usuario) {
+        System.out.println(usuario.getUsuario());
+        return getUser(usuario.getUsuario(), usuario.getPassword());
     }
 
 }

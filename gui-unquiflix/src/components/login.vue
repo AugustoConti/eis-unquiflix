@@ -30,8 +30,6 @@
 <script>
     import API from "../service/api";
 
-
-
     export default {
         name: "login",
         components: {},
@@ -44,15 +42,13 @@
         },
         methods: {
             logear(){
-                API.get("/loginName/" + this.loginName + "/"+ this.password)
-                    .then(response => this.validarSesion(response))
-            .catch(e => alert(e));
-            },
-
-            validarSesion(respuesta){
-                this.$session.start()
-                this.$session.set('unqf', respuesta.body)
-                this.$router.push({name: 'component1', params: {loggedUser: respuesta}})
+                API.post("/auth",{usuario: this.loginName, password: this.password})
+                    .then(response => {
+                      this.$session.start()
+                      this.$session.set('unqf', response)
+                      this.$router.push({name: 'component1', params: {loggedUser: response}})
+                    })
+                    .catch(e => alert(e.response.data.message));
             }
         }
     };
