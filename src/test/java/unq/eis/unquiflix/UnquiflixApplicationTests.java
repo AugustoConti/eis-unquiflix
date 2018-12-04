@@ -9,10 +9,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import unq.eis.unquiflix.model.Categoria;
 import unq.eis.unquiflix.model.Pelicula;
 import unq.eis.unquiflix.model.Usuario;
-import unq.eis.unquiflix.service.PeliculaInexistenteException;
-import unq.eis.unquiflix.service.PeliculaService;
-import unq.eis.unquiflix.service.UsuarioIncorrectoException;
-import unq.eis.unquiflix.service.UsuarioService;
+import unq.eis.unquiflix.service.*;
 
 import java.time.LocalDate;
 import java.util.Arrays;
@@ -122,17 +119,20 @@ public class UnquiflixApplicationTests {
 
     @Test
     public void getUsuarioAdmin() {
-        assertUsuario(userService.getUsuario("quique","123"), "Enrique Alonso", true);
+        UsuarioSimple u = new UsuarioSimple("quique", "123");
+        assertUsuario(userService.getUsuario(u), "Enrique Alonso", true);
     }
 
     @Test
     public void getUsuarioComun() {
-        assertUsuario(userService.getUsuario("augusto","456"), "Augusto Conti", false);
+        UsuarioSimple u = new UsuarioSimple("augusto", "456");
+        assertUsuario(userService.getUsuario(u), "Augusto Conti", false);
     }
 
     @Test(expected = UsuarioIncorrectoException.class)
     public void getUsuarioInexistente() {
-        userService.getUsuario("rodolfo","");
+        UsuarioSimple u = new UsuarioSimple("rodolfo", "123");
+        userService.getUsuario(u);
     }
 
     @Test
@@ -141,10 +141,22 @@ public class UnquiflixApplicationTests {
         peliService.puntuarPelicula(peli.getID(),5);
         assertEquals(2, peliService.getPelicula(peli.getID()).getPuntuacion().size());
     }
+
     @Test (expected = UsuarioIncorrectoException.class)
     public void verificoQueLaClaveDeUnUsuarioNoSeaCorrectaYArrojeUnaExcepcion(){
-        userService.getUsuario("quique","passwordErronea").validarPassword("123");
+        UsuarioSimple u = new UsuarioSimple("quique", "passwordErronea");
+        userService.getUsuario(u).validarPassword("123");
+    }
+    @Test
+    //Testear usuario Simple
+    public void obtengoLaPasswordDeUnUsuarioYCoincideConLaCreada(){
+        UsuarioSimple user = new UsuarioSimple("quique","123");
+        assertEquals("123",user.getPassword());
     }
 
+    public void obtengoElUsuarioDeUnUsuarioYCoincideConLaCreada(){
+        UsuarioSimple user = new UsuarioSimple("quique","123");
+        assertEquals("quique",user.getUsuario());
+    }
 
 }
