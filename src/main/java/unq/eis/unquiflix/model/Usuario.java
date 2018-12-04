@@ -37,11 +37,5 @@ public class Usuario {
         return fullName;
     }
 
-    public void validarPassword(String password){
-        if (!this.password.equals(password)){
-            throw new UsuarioIncorrectoException(this.loginName);
-        }
-
-    }
 
 }
