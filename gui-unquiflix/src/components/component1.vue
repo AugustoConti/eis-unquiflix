@@ -3,7 +3,7 @@
         <nav id="barra-principal" class="navbar navbar-dark bg-dark fixed-top ">
             <h2 class="text-white" id="unqHead-Title">UNQUIFLIX</h2>
 
-            <input type="search" v-model="peli_find" placeholder="Buscar..">
+            <input class="input-text" v-model="peli_find" placeholder="Buscar..">
             <div class="div-select">
                 <select class="custom-select" v-model="peliculasearch" name="" id="">
                     <option value="" disabled selected hidden>Elegir categoría</option>
@@ -17,9 +17,11 @@
             <h3 style="color:red!important;">{{loggedUser.nombre}}</h3>
             <button class="btn btn-danger" v-on:click="logOut()">Log out</button>
         </nav>
+
         <div class="float-right mr-4">
-            <router-link class="btn btn-success m-0 pl-2 pr-2 pt-0 pb-0" :to="{ name: 'pelicula', params: {loggedUser: loggedUser}}" v-if="loggedUser.esAdmin"><h1>+</h1></router-link>
+            <router-link class="btn btn-success m-0 pl-2 pr-2 pt-0 pb-0" :to="{ name: 'pelicula', params: {loggedUser: loggedUser}}" v-if="loggedUser.esAdmin">+</router-link>
         </div>
+
         <div v-if="!peli_find && !peliculasearch">
             <h3 class="text-white d-inline-block mr-3">Estrenos de los últimos: </h3>
             <div class="div-select d-inline-block">
@@ -39,8 +41,9 @@
                 </div>
             </div>
         </div>
+
         <div v-for="cat in categoriaFiltered" :key="cat" >
-            <h3 class="categoriaHead" >{{cat}} </h3>
+                <h3 class="categoriaHead" >{{cat}} </h3>
             <div class="card-container">
                 <div v-for="pelicula in peliculasPorCategoria(cat)" :key="pelicula.id">
                     <tarjeta :user="loggedUser" :peli="pelicula" :on-toggle="leerPeliculas"> </tarjeta>
@@ -117,7 +120,7 @@
             leerPeliculas() {
                 var self =this;
                 API.get("")
-                    .then(response => this.callBack(response))
+                    .then(response => self.callBack(response))
                     .catch(e => alert(e));
             },
             
@@ -126,11 +129,7 @@
                 this.$router.push('/');
             },
 
-            leerPeliculas() {
-                API.get("")
-                    .then(p => this.peliculas = p)
-                    .catch(e => alert(e));
-            },
+
             
             callBack(r){
                 this.peliculas = r;
@@ -181,4 +180,42 @@
         padding-top: 50px;
         padding-bottom: 10px;
     }
+
+    /*EStilo nav*/
+    #barra-principal{
+        height:10vh!Important;
+    }
+    .text-white{
+        font-size: 2vw!important;
+    }
+    h3{
+        font-size: 2vw!important;
+    }
+
+    .div-select{
+        width:18vw;
+    }
+    .custom-select{
+        width: 17vw;
+        height:50%;
+        font-size: 65%;
+    }
+    .input-text{
+        width:20vw;
+        font-size: 40%;
+    }
+    .btn-danger{
+        height:80%!important;
+        width:10%!important;
+        font-size: 80%!important;
+        padding:0.5vw!important;
+    }
+    .btn-success{
+        height:8vh!important;
+        width:4vw!important;
+        padding:0vw!important;
+        font-size:3vw;
+    }
+
+
 </style>

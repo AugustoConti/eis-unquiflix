@@ -62,17 +62,20 @@
   }
 
   .form-signin {
-    width: 100%;
+    width: 60vw ;
+    height:85vh;
     max-width: 330px;
-    padding: 15px;
+    padding: 15px 20px 40px 15px;
     margin: auto;
     align-items: center;
     border-radius:8px;
     backdrop-filter: blur(5px);
     background-color: rgba(0, 0, 0, 0.5);
+
   }
 
   .blurred-bg-container .content {
+    margin-top:3em;
     background: inherit;
     border-radius:8px;
     box-shadow: 0 0 32px rgba(0, 0, 0, 0.95);
@@ -119,6 +122,12 @@
     display: block;
     margin-left: auto;
     margin-right: auto;
-    width: 70%;
+    width: 22vw;
   }
+  input, button{
+    height:3em!important;
+  }
+
+
+
 </style>

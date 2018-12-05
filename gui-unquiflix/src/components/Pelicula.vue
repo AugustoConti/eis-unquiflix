@@ -1,20 +1,20 @@
 <template>
-    <div class="container-fluid">
+    <div class="container-fluid" >
         <h1 class="text-white">{{this.isNew ? 'Nueva' : 'Editar'}} Película</h1>
         <div class="row">
           <div class="col-4">
             <img class="w-75 p-3" :src="source" :alt="peli.titulo" />
           </div>
-          <div class="col-6">
+          <div class="col-6" >
             <div class="form-group row">
-              <div class="col-9">
+              <div class="col-3" >
                 <input type="checkbox" id="checkbox" v-model="peli.activa">
                 <label class="text-white" for="checkbox">Activa</label>
               </div>
             </div>
             <div class="form-group row">
                 <label class="col-3 col-form-label text-white">Titulo</label>
-                <div class="col-9"><input v-model="peli.titulo" class="form-control"/></div>
+                <div class="col-9"><input v-model="peli.titulo" class="form-control" /></div>
             </div>
             <div class="form-group row">
                 <label class="col-3 col-form-label text-white">Descripción</label>
@@ -44,12 +44,20 @@
                 <label class="col-3 col-form-label text-white">Portada</label>
                 <div class="col-9"><input v-model="peli.linkPortada" class="form-control"/></div>
             </div>
+
+              <div  class="form-group row" role="group">
+
+                  <router-link class="btn btn-secondary" :to="{name: 'component1', params: {loggedUser: loggedUser}}">Cancelar</router-link>&nbsp;&nbsp;
+                  <button class="btn btn-primary" v-on:click="send">Aceptar</button>
+
+              </div>
           </div>
+
+
+
+
         </div>
-        <div class="btn-group float-right" role="group">
-          <router-link class="btn btn-secondary" :to="{name: 'component1', params: {loggedUser: loggedUser}}">Cancelar</router-link>
-          <button class="btn btn-primary" v-on:click="send">Aceptar</button>
-        </div>
+
     </div>
 </template>
 
@@ -106,4 +114,50 @@ export default {
 </script>
 
 <style scoped>
+    /*container-fluid{
+        font-size: 1em!important;
+    }
+
+    label{
+        background-color: red;
+        width:220px!important;
+    }
+
+*/
+    .form-group {
+
+        width:140%!important;
+        line-height:1em;
+
+        margin-bottom:1.8vh;
+        vertical-align: middle;
+    }
+    checkbox{
+        vertical-align: middle;
+    }
+    label{
+        width: 0.1em!important;
+        font-size: 1.6vw;
+    }
+
+    input{
+        width:90%;
+        font-size: 1.6vw!important;
+        height: 2.5em;
+
+
+
+    }
+
+
+    .btn{
+        font-size: 2vh!important;
+        padding:1vh!important;
+        float:right!important;
+    }
+
+    .col-3 label{
+        vertical-align: top;
+        margin-left: 4px;
+    }
 </style>

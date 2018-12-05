@@ -1,20 +1,20 @@
 <template>
     <div class="card" v-bind:class="[{noActiva:!peli.activa}]">
         <div class="container" >
-            <img class="img-fluid image" :src="peli.linkPortada" :alt="peli.titulo">
             <div class="overlay">
                 <a :href="peli.link" class="icon">
                     <i class="fa fa-play-circle"></i>
                 </a>
+
+                <router-link class="btn btn-info " :to="{ name: 'component2', params: {pelicula: peli, loggedUser: loggedUser}}">
+                    <i class="oi oi-info"></i>
+                </router-link>
+                <router-link v-if="$parent.loggedUser.esAdmin" class="btn btn-success " :to="{ name: 'pelicula', params: {pelicula: peli, loggedUser: loggedUser}}">
+                    <i class="oi oi-pencil"></i>
+                </router-link>
                 <span @click="togglePelicula" class="disabler" v-if="$parent.loggedUser.esAdmin">
                     <i :class="[ peli.activa ? 'fa fa-eye' : 'fa fa-eye-slash']"></i>
                 </span>
-                <router-link class="btn btn-info pl-4 pr-4 pb-1" :to="{ name: 'component2', params: {pelicula: peli, loggedUser: loggedUser}}">
-                    <h3><span class="oi oi-info"></span></h3>
-                </router-link>
-                <router-link v-if="$parent.loggedUser.esAdmin" class="btn btn-success pl-3 pr-3 pb-1" :to="{ name: 'pelicula', params: {pelicula: peli, loggedUser: loggedUser}}">
-                    <h3><span class="oi oi-pencil"></span></h3>
-                </router-link>
                 <div v-if="!$parent.loggedUser.esAdmin">
                     <transition name="slide-fade">
                         <div class="container" id="c2" v-if="!loading">
@@ -24,17 +24,21 @@
                     </transition>
                 </div>
             </div>
+            <div class="img-container"><img class="img-fluid image" :src="peli.linkPortada" :alt="peli.titulo"></div>
+
+
+            <div class="card-body">
+
+
+                <h4>{{ peli.titulo }}</h4>
+                <p class="card-text card-descripcion">{{ peli.descripcion.substring(0, 75)}}...</p>
+                <p class="card-text card-estrella">
+                    <i class="fa fa-star estrella es-elegida" v-for="i in parseInt(puntaje)" :key="20+i" v-on:click="puntuar(i)"></i>
+                    <i class="fa fa-star estrella es-vacia" v-for="i in (5-parseInt(puntaje))" :key="30+i" v-on:click="puntuar(i+puntaje)"></i>
+                    ({{puntaje.toFixed(1)}})
+                </p>
         </div>
-        <div class="card-body">
 
-
-            <h4>{{ peli.titulo }}</h4>
-            <p class="card-text">{{ peli.descripcion.substring(0, 75)}}...</p>
-            <p class="card-text">
-                <i class="fa fa-star estrella es-elegida" v-for="i in parseInt(puntaje)" :key="20+i" v-on:click="puntuar(i)"></i>
-                <i class="fa fa-star estrella es-vacia" v-for="i in (5-parseInt(puntaje))" :key="30+i" v-on:click="puntuar(i+puntaje)"></i>
-                ({{puntaje.toFixed(1)}})
-            </p>
         </div>
     </div>
 </template>
@@ -117,11 +121,11 @@
 
 <style scoped>
     .card {
-        padding-top: 1em;
+        /*padding-top: 1em;*/
         width: 20%;
         float: left;
-        margin: 1em 1em 0 0;
-        min-height:42em;
+        margin: 1vh 1vw 0 0;
+        min-height:66vh!important;
     }
 
     h4 {
@@ -140,6 +144,7 @@
         opacity: 0;
         transition: 0.3s ease;
         background-color: rgba(0, 0, 0, 0.5);
+        padding:10px;
     }
 
 
@@ -151,7 +156,7 @@
     /* The icon inside the overlay is positioned in the middle vertically and horizontally */
     .icon {
         color: white;
-        font-size: 100px;
+        font-size: 5em;
         position: absolute;
         top: 50%;
         left: 50%;
@@ -168,13 +173,17 @@
     /*Item de menu activacion */
     .disabler {
         color: white;
-        font-size: 40px;
-        position: absolute;
-        top: 20px;
-        right: 0px;
-        transform: translate(-50%, -50%);
-        -ms-transform: translate(-50%, -50%);
+        float:right;
         text-align: center;
+
+        width:4vw!important;
+        height:4vw!important;
+        font-size:2vw;
+        line-height:4vw;
+        padding:0.3em;
+        margin:0.2vw;
+
+
     }
 
     .fa-toggle-on {
@@ -190,7 +199,7 @@
     }
 
     .estrella{
-        font-size:30px!important;
+        font-size:1.5em!important;
     }
     .estrella:hover{
         color:yellow;
@@ -224,4 +233,76 @@
         transform: translateX(10px);
         opacity: 0;
     }
+
+
+    /*autoajustable*/
+    .container{
+        padding:0 1vw 0 1vw;
+    }
+    .card{
+        width:17vw;
+        font-size: 1em;
+        padding-top:0.3em;
+        min-height:83vh!important;
+
+    }
+    .card-body{
+        padding:.3em;
+
+
+    }
+
+    .img-container{
+
+        max-height: 41vh; /*36*/
+        overflow-y: hidden;
+    }
+
+    h4{
+        max-height:13vh;
+        min-height:13vh;
+        font-size: 3.3vh;
+
+    }
+
+    .card-descripcion{
+        padding-top:4vh!important;
+        max-height: 11vh!important;
+        min-height:11vh!important;
+        font-size: 2.5vh!important;
+    }
+    .card-estrella{
+        position:absolute;
+        bottom:0;
+        min-height:5vh!important;
+        font-size: 1.4vw!important;
+    }
+    .card-text{
+        margin-top:10px!important;
+
+    }
+
+    span {
+        width:8%;
+        font-size:.5em;
+    }
+
+    .overlay .btn-info{
+        width:4vw!important;
+        height:4vw!important;
+        font-size:2vw;
+        line-height:4vw;
+        padding:0.1vw;
+        margin:0;
+
+    }
+    .overlay .btn-success{
+        width:4vw!important;
+        height:4vw!important;
+        font-size:2vw;
+        line-height:4vw;
+        padding:0.1vw;
+        margin:0.7vw;
+    }
+
 </style>
