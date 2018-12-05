@@ -96,6 +96,7 @@
                 loggedUser: {},
                 estreno: 3
             };
+
         },
 
         created() {
@@ -105,8 +106,7 @@
                 .then(c => this.categorias = c)
                 .catch(e => alert(e));
         },
-
-        beforeCreate: function () {
+       beforeCreate: function () {
             if (!this.$session.exists()) {
                 this.$router.push('/')
             }
@@ -114,6 +114,13 @@
         },
 
         methods: {
+            leerPeliculas() {
+                var self =this;
+                API.get("")
+                    .then(response => this.callBack(response))
+                    .catch(e => alert(e));
+            },
+            
             logOut:function(){
                 this.$session.destroy();
                 this.$router.push('/');
@@ -124,7 +131,11 @@
                     .then(p => this.peliculas = p)
                     .catch(e => alert(e));
             },
-
+            
+            callBack(r){
+                this.peliculas = r;
+            },
+            
             peliculasPorCategoria(categoria) {
                 return this.peliculaFilterName
                     .filter(p => p.categoria == categoria);
@@ -133,7 +144,7 @@
             peliculasPorEstreno() {
                 return this.peliculas.filter(p =>
                     moment(p.estreno, "YYYY-MM-DD") >= subDays(new Date(), this.estreno)
-            );
+                );
             }
         }
     };
