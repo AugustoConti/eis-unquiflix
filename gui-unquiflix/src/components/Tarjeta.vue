@@ -24,9 +24,8 @@
                     </transition>
                 </div>
             </div>
+
             <div class="img-container"><img class="img-fluid image" :src="peli.linkPortada" :alt="peli.titulo"></div>
-
-
             <div class="card-body">
 
 
@@ -37,7 +36,7 @@
                     <i class="fa fa-star estrella es-vacia" v-for="i in (5-parseInt(puntaje))" :key="30+i" v-on:click="puntuar(i+puntaje)"></i>
                     ({{puntaje.toFixed(1)}})
                 </p>
-        </div>
+            </div>
 
         </div>
     </div>
@@ -145,6 +144,7 @@
         transition: 0.3s ease;
         background-color: rgba(0, 0, 0, 0.5);
         padding:10px;
+        z-index:1;
     }
 
 

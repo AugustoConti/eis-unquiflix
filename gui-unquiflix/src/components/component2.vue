@@ -69,4 +69,10 @@ h5 {
 img {
     width: 15%;
 }
+
+.btn{
+    font-size: 2vh!important;
+    padding:1vh!important;
+    float:right!important;
+}
 </style>

@@ -81,6 +81,19 @@
             .filter(function (elem, pos, arr) {
                     return arr.indexOf(elem) == pos;
                 });
+            },
+
+            userResponsive: function(){
+              if (this.loggedUser.esAdmin) {
+                  return this.peliculaFilterName;
+              }else{
+                  return this.activadasFiltered;
+              }
+            },
+
+            activadasFiltered: function () {
+                return this.peliculaFilterName
+                    .filter(p => p.activa==true);
             }
         },
 
@@ -136,7 +149,7 @@
             },
             
             peliculasPorCategoria(categoria) {
-                return this.peliculaFilterName
+                return this.userResponsive
                     .filter(p => p.categoria == categoria);
             },
 
@@ -198,11 +211,13 @@
     .custom-select{
         width: 17vw;
         height:50%;
-        font-size: 65%;
+        font-size: 75%;
     }
     .input-text{
         width:20vw;
-        font-size: 40%;
+        height: 50%!important;
+        font-size: 75%;
+        padding: 1em;
     }
     .btn-danger{
         height:80%!important;
@@ -212,8 +227,8 @@
     }
     .btn-success{
         height:8vh!important;
-        width:4vw!important;
-        padding:0vw!important;
+        width:8vh!important;
+        padding:0 0.5vw 0 0.5vw!important;
         font-size:3vw;
     }
 
