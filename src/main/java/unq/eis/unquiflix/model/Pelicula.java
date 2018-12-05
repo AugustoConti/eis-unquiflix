@@ -1,5 +1,7 @@
 package unq.eis.unquiflix.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.List;
@@ -92,5 +94,12 @@ public class Pelicula {
         return puntuacion;
     }
 
-    public void addPuntaje (Integer puntaje){this.puntuacion.add (puntaje);    }
+    public void addPuntaje(Integer puntaje) {
+        this.puntuacion.add(puntaje);
+    }
+
+    @JsonIgnore
+    public Double getRanking() {
+        return puntuacion.stream().mapToInt(i -> i).average().orElse(0);
+    }
 }

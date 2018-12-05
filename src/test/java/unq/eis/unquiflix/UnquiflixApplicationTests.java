@@ -142,24 +142,15 @@ public class UnquiflixApplicationTests {
         assertEquals(2, peliService.getPelicula(peli.getID()).getPuntuacion().size());
     }
 
-
-    @Test
-    //Testear usuario Simple
-    public void obtengoLaPasswordDeUnUsuarioYCoincideConLaCreada(){
-        UsuarioSimple user = new UsuarioSimple("quique","123");
-        assertEquals("123",user.getPassword());
-    }
-
-    @Test
-    public void obtengoElUsuarioDeUnUsuarioYCoincideConLaCreada(){
-        UsuarioSimple user = new UsuarioSimple("quique","123");
-        assertEquals("quique",user.getUsuario());
-    }
-
     @Test
     public void creoUnUsuarioSimpleYObtengoTalClase(){
         UsuarioSimple u = new UsuarioSimple();
         assertEquals(u.getClass(), UsuarioSimple.class);
+    }
+
+    @Test
+    public void top10(){
+        assertEquals(10, peliService.getTop10Peliculas().size());
     }
 
 }
