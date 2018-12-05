@@ -13,9 +13,10 @@
                     <option value="">TODAS</option>
                 </select>
             </div>
+            <router-link class="m-0 pl-2 pr-2 pt-0 pb-0" :to="{ name: 'top', params: {loggedUser: loggedUser}}"><h3>Top10</h3></router-link>
             <h3 class="text-warning" v-if="loggedUser.esAdmin">ADMIN</h3>
             <h3 style="color:red!important;">{{loggedUser.nombre}}</h3>
-            <button class="btn btn-danger" v-on:click="logOut()">Log out</button>
+            <button class="btn btn-danger" v-on:click="logOut()">Salir</button>
         </nav>
         <div class="float-right mr-4">
             <router-link class="btn btn-success m-0 pl-2 pr-2 pt-0 pb-0" :to="{ name: 'pelicula', params: {loggedUser: loggedUser}}" v-if="loggedUser.esAdmin"><h1>+</h1></router-link>
