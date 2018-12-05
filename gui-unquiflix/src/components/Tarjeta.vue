@@ -275,7 +275,11 @@
         position:absolute;
         bottom:0;
         min-height:5vh!important;
+
         font-size: 1.4vw!important;
+    }
+    #c2{
+        font-size: 1.6vw!important;
     }
     .card-text{
         margin-top:10px!important;
